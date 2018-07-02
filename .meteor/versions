@@ -19,6 +19,8 @@ ddp-rate-limiter@1.0.7
 ddp-server@2.2.0
 deps@1.0.12
 diff-sequence@1.1.0
+dispatch:mocha-phantomjs@0.1.9
+dispatch:phantomjs-tests@0.0.7
 dynamic-import@0.4.0
 ecmascript@0.11.0
 ecmascript-runtime@0.7.0
@@ -51,6 +53,7 @@ mongo-dev-server@1.1.0
 mongo-id@1.0.7
 npm-mongo@3.0.7
 ordered-dict@1.1.0
+practicalmeteor:mocha-core@1.0.1
 promise@0.11.1
 random@1.1.0
 rate-limit@1.0.9
