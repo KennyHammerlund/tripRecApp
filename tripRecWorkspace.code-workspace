@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "C:\\tripRecServer"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
