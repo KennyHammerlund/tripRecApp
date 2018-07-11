@@ -2,3 +2,13 @@ IP: 10.10.72.13
 user: tripRecDB
 password: ICS490
 DB Name: TripRec
+
+Server Pipeline
+PS C:\tripRecServer> heroku authorizations:create
+Creating OAuth Authorization... done
+Client:      <none>
+ID:          95cb6ce7-929a-4cb4-90d1-aea2e25c1372
+Description: Long-lived user authorization
+Scope:       global
+Token:       5c08f82c-24e7-45e0-ab40-7af95ccf8f5f
+Updated at:  Sat Jul 07 2018 09:01:28 GMT-0500 (Central Daylight Time) (less than a minute ago)
