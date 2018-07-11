@@ -6,7 +6,7 @@ export class index extends Component {
       <div className="main wrapper-page form-login text-center">
         <div className="m-t-15">
           <Image
-            src="./img/SVG/Circle_Logo.svg"
+            src="./img/2x/Circle_Logo_1200.png"
             width={200}
             height={200}
             className="m-lr-auto"
