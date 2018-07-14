@@ -1,0 +1,105 @@
+.circle(@selector, @color) {
+  .circle.@{selector} {
+    color: @color;
+    box-shadow: 0 0 0 2px @color;
+  }
+  .eventNav .circle.@{selector} {
+    color: #fff;
+    background-color: @color;
+  }
+}
+
+.themeColor(@name, @color) {
+  .text-@{name} {
+    color: @color;
+  }
+  a.text-@{name},
+  .text-@{name} a {
+    &:hover,
+    &:focus,
+    &:active {
+      color: darken(@color, 8%);
+    }
+  }
+  .label-@{name} {
+    background-color: @color;
+    color: #ffffff;
+  }
+
+  .icon-@{name} {
+    & i {
+      color: @color;
+    }
+    box-shadow: 0 0 0 2px @color !important;
+  }
+
+  .panel-@{name} .panel-heading {
+    background-color: @color !important;
+    color: contrast(@color, #ffffff, #333333) !important;
+    > h4 {
+      color: contrast(@color, #ffffff, #333333) !important;
+    }
+  }
+
+  .bg-@{name} {
+    background-color: @color !important;
+    color: contrast(@color, #ffffff, #333333) !important;
+  }
+  .alert-@{name} {
+    background-color: fade(@color, 20%) !important;
+    border-color: fade(@color, 50%) !important;
+    color: @color !important;
+    .glyphicons {
+      color: @color !important;
+    }
+  }
+
+  .notice-@{name} {
+    background-color: @color !important;
+    color: contrast(@color, #ffffff, #333333) !important;
+    margin: 0 10px 20px;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken(@color, 8%) !important;
+    }
+  }
+  .notice-@{name} button,
+  .notice-@{name} a {
+    display: block;
+    width: 100%;
+    padding: 10px 35px;
+    color: contrast(@color, rgb(255, 255, 255), rgb(60, 60, 60)) !important;
+  }
+  .notice-@{name} > form > button:hover {
+    color: contrast(
+      @color,
+      rgba(255, 255, 255, 0.9),
+      rgba(60, 60, 60, 0.9)
+    ) !important;
+  }
+
+  .btn-@{name},
+  .btn-@{name}.disabled:hover {
+    background-color: @color !important;
+    border: 1px solid @color !important;
+    color: contrast(
+      @color,
+      rgba(255, 255, 255, 0.9),
+      rgba(60, 60, 60, 0.9)
+    ) !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: darken(@color, 8%) !important;
+      border: 1px solid darken(@color, 8%) !important;
+    }
+  }
+  .btn-group.open {
+    .btn-@{name} {
+      background-color: lighten(@color, 20%) !important;
+      border: 1px solid lighten(@color, 20%) !important;
+    }
+  }
+}
