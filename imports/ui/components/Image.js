@@ -4,6 +4,7 @@ import React, { Component } from "react";
 
 class Image extends Component {
 
+  
   render() {
     console.log(this.props);
     const { mode, src, height, width, style, ...props } = this.props;
