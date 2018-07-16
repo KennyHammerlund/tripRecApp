@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Image from "../../components/Image";
-import { Switch, Route } from "react-router-dom";
+// import { Switch, Route } from "react-router-dom";
 import test from "./test";
 export class index extends Component {
   render() {
@@ -19,10 +19,10 @@ export class index extends Component {
             className="m-lr-auto"
           />
         </div>
-        <Switch>
-          {/* Switches between login/logout and forgot passoword components */}
+        {/* <Switch>
+          Switches between login/logout and forgot passoword components
           <Route path={path} Component={test} />
-        </Switch>
+        </Switch> */}
       </div>
     );
   }
