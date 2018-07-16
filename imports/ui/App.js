@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "../ui/pages/Dashboard";
+import Test from "../ui/pages/Login/test";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
@@ -10,12 +11,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route
-          exact
-          path="/"
-          // component-{() => (if token redirect to login or dashboard)}
-          component={Dashboard}
-        />
+        <Route exact path="/" component={Dashboard} />
         <Route path="/login" component={login} />
       </Switch>
     );

@@ -6,11 +6,11 @@ class mainRoutes extends Component {
     return (
       <div>
         <Switch>
+          {/* <Route path="somePath" component="someComponent" />
           <Route path="somePath" component="someComponent" />
           <Route path="somePath" component="someComponent" />
           <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" />
+          <Route path="somePath" component="someComponent" /> */}
         </Switch>
       </div>
     );
