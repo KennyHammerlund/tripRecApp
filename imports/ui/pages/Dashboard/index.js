@@ -1,6 +1,19 @@
 import React, { Component } from "react";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+
 import Image from "../../components/Image";
 import Navigation from "../Navigation";
+
+const dashQuery = gql`
+  {
+    user(id: 55) {
+      firstName
+      lastName
+    }
+  }
+`;
+
 export class index extends Component {
   render() {
     return (
@@ -13,4 +26,4 @@ export class index extends Component {
   }
 }
 
-export default index;
+export default graphql(dashQuery)(index);
