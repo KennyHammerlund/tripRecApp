@@ -1,23 +1,33 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+
 import login from "./pages/Login";
-import Dashboard from "../ui/pages/Dashboard";
-import CreateTrip from "../ui/pages/CreateTrip";
-import CurrentTrip from "../ui/pages/CurrentTrip";
-import MyTrips from "../ui/pages/MyTrips";
-import { Route, Switch, Redirect } from "react-router-dom";
+import AppLayout from "../ui/AppLayout";
 
 //use MainRoutes.js to store pages inside the navigation container
 
 class App extends Component {
   render() {
+    console.log("------PROPS------");
+    console.log(this.props);
+
     return (
-      <Switch>
-        <Route exact path="/" component={Dashboard} />
-        <Route path="/login" component={login} />
-        <Route path="/createtrip" component={CreateTrip} />
-        <Route path="/currenttrip" component={CurrentTrip} />
-        <Route path="/mytrips" component={MyTrips} />
-      </Switch>
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={() => <Redirect to="/dashboard" />}
+          />
+          <Route path="/login" component={login} />
+          <Route component={AppLayout} />
+        </Switch>
+      </Router>
     );
   }
 }

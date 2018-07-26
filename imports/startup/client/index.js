@@ -1,7 +1,6 @@
 import React from "react";
 import { Meteor } from "meteor/meteor";
 import { render } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -22,9 +21,7 @@ const client = new ApolloClient({
 Meteor.startup(() => {
   render(
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </ApolloProvider>,
     document.getElementById("app")
   );

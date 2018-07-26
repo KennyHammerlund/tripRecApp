@@ -1,18 +1,25 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+
+import CreateTrip from "./pages/CreateTrip";
+import CurrentTrip from "./pages/CurrentTrip";
+import MyTrips from "./pages/MyTrips";
+import Dashboard from "./pages/Dashboard";
+
 //This class gets enclosed inside the navigation to change the content pages while leaving navigation.
 //Add content pages to this list. when navigated to they will be included with the navigation
-class mainRoutes extends Component {
+
+export class mainRoutes extends Component {
   render() {
+    console.log("------PROPS------");
+    console.log(this.props);
     return (
-      <div>
-        <Switch>
-          {/* <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" />
-          <Route path="somePath" component="someComponent" /> */}
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/createtrip" component={CreateTrip} />
+        <Route exact path="/currenttrip" component={CurrentTrip} />
+        <Route exact path="/mytrips" component={MyTrips} />
+      </Switch>
     );
   }
 }
