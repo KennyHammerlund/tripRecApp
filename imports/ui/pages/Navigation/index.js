@@ -30,7 +30,7 @@ export class index extends Component {
           <h5><a href="/currenttrip">Current Trip</a></h5>
           </div>
           <div className="col-xs-1 col-lg-1">
-          <h5><a href="#">My Trips</a></h5>
+          <h5><a href="/mytrips">My Trips</a></h5>
           </div>
           <div className="col-xs-1 col-lg-1">
           <h5><a href="#">Browse trips</a></h5>
