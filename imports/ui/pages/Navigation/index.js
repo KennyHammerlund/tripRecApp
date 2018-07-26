@@ -20,11 +20,23 @@ export class index extends Component {
     } = this.props;
     return (
       <div className="row top-nav bg-primary">
-        <div className="col-xs-8 col-lg-10">
+        <div className="col-xs-6 col-lg-5">
           <h3>TripRec: App</h3>
         </div>
-        <div className="col-xs-4 col-lg-2">
-          <h4>Users Portal</h4>
+        <div className="col-xs-1 col-lg-2">
+          <h5>Create trip</h5>
+          </div>
+          <div className="col-xs-1 col-lg-2">
+          <h5>Current Trip</h5>
+          </div>
+          <div className="col-xs-1 col-lg-1">
+          <h5>My Trips</h5>
+          </div>
+          <div className="col-xs-1 col-lg-1">
+          <h5>Browse trips</h5>
+          </div>
+          <div className="col-xs-2 col-lg-1">
+          <h5>Users Portal</h5>
           <div>
             <h5>{user ? `${user.firstName} ${user.lastName}` : "Guest"}</h5>
           </div>
