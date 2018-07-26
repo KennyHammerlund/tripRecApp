@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import login from "./pages/Login";
 import Dashboard from "../ui/pages/Dashboard";
-import Test from "../ui/pages/Test";
+import CreateTrip from "../ui/pages/CreateTrip";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
@@ -13,7 +13,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route path="/login" component={login} />
-        <Route path="/test" component={Test} />
+        <Route path="/createtrip" component={CreateTrip} />
       </Switch>
     );
   }

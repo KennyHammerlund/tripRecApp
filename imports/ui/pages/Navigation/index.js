@@ -24,7 +24,7 @@ export class index extends Component {
           <h3><a href="/">TripRec: App</a></h3>
         </div>
         <div className="col-xs-1 col-lg-2">
-          <h5><a href="/test">Create trip</a></h5>
+          <h5><a href="/createtrip">Create trip</a></h5>
           </div>
           <div className="col-xs-1 col-lg-2">
           <h5><a href="#">Current Trip</a></h5>
