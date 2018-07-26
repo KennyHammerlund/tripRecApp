@@ -21,7 +21,7 @@ export class index extends Component {
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
-          <h3><a href="/test">TripRec: App</a></h3>
+          <h3><a href="/">TripRec: App</a></h3>
         </div>
         <div className="col-xs-1 col-lg-2">
           <h5><a href="#">Create trip</a></h5>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Image from "../../components/Image";
 // import { Switch, Route } from "react-router-dom";
 import test from "./test";
+import Navigation from "../Navigation";
 export class index extends Component {
   render() {
     const {
@@ -10,6 +11,11 @@ export class index extends Component {
     console.log("------PROPS------");
     console.log(this.props);
     return (
+      <div>
+      <div>
+        <Navigation />
+        <h2>This is the login page</h2>
+        </div>
       <div className="form-login text-center">
         <div>
           <Image
@@ -23,6 +29,7 @@ export class index extends Component {
           Switches between login/logout and forgot passoword components
           <Route path={path} Component={test} />
         </Switch> */}
+      </div>
       </div>
     );
   }
