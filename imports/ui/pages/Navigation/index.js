@@ -21,22 +21,22 @@ export class index extends Component {
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
-          <h3>TripRec: App</h3>
+          <h3><a href="/test">TripRec: App</a></h3>
         </div>
         <div className="col-xs-1 col-lg-2">
-          <h5>Create trip</h5>
+          <h5><a href="#">Create trip</a></h5>
           </div>
           <div className="col-xs-1 col-lg-2">
-          <h5>Current Trip</h5>
+          <h5><a href="#">Current Trip</a></h5>
           </div>
           <div className="col-xs-1 col-lg-1">
-          <h5>My Trips</h5>
+          <h5><a href="#">My Trips</a></h5>
           </div>
           <div className="col-xs-1 col-lg-1">
-          <h5>Browse trips</h5>
+          <h5><a href="#">Browse trips</a></h5>
           </div>
           <div className="col-xs-2 col-lg-1">
-          <h5>Users Portal</h5>
+          <h5><a href="/login">Users Portal</a></h5>
           <div>
             <h5>{user ? `${user.firstName} ${user.lastName}` : "Guest"}</h5>
           </div>
