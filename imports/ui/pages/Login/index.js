@@ -1,38 +1,92 @@
-import React, { Component } from "react";
-import Image from "../../components/Image";
-// import { Switch, Route } from "react-router-dom";
-import test from "./test";
-import Navigation from "../Navigation";
-export class index extends Component {
+import React, { Component } from 'react'
+import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
+
+
+import { AUTH_TOKEN } from '../../constants'
+class Login extends Component {
+  state = {
+    login: true, // switch between Login and SignUp
+    email: '',
+    password: '',
+    name: '',
+  }
+
+
+  
   render() {
-    const {
-      match: { path }
-    } = this.props;
-    console.log("------PROPS------");
-    console.log(this.props);
+    const SIGNUP_MUTATION = gql`
+    mutation SignupMutation($email: String!, $password: String!, $name: String!) {
+      signup(email: $email, password: $password, name: $name) {
+        token
+      }
+    }
+  `
+  const LOGIN_MUTATION = gql`
+    mutation LoginMutation($email: String!, $password: String!) {
+      login(email: $email, password: $password) {
+        token
+      }
+    }`
+  
+    const { login, email, password, name } = this.state
     return (
-      <div>
-      <div>
-        <Navigation />
-        <h2>This is the login page</h2>
-        </div>
-      <div className="form-login text-center">
-        <div>
-          <Image
-            src="./img/2x/Circle_Logo_1200.png"
-            width={200}
-            height={200}
-            className="m-lr-auto"
+      <div className="form-group">
+        <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
+        <div className="flex flex-column">
+          {!login && (
+            <input
+              value={name}
+              onChange={e => this.setState({ name: e.target.value })}
+              type="text"
+              placeholder="Your name"
+            />
+          )}
+          <input
+            value={email}
+            onChange={e => this.setState({ email: e.target.value })}
+            type="text"
+            placeholder="Your email address"
+          />
+          <input
+            value={password}
+            onChange={e => this.setState({ password: e.target.value })}
+            type="password"
+            placeholder="Choose a safe password"
           />
         </div>
-        {/* <Switch>
-          Switches between login/logout and forgot passoword components
-          <Route path={path} Component={test} />
-        </Switch> */}
+        <div className="flex mt3">
+        <div className="flex mt3">
+  <Mutation
+    mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
+    variables={{ email, password, name }}
+    onCompleted={data => this._confirm(data)}
+  >
+    {mutation => (
+      <div className="pointer mr2 button" onClick={mutation}>
+        {login ? 'login' : 'create account'}
       </div>
+    )}
+  </Mutation>
+  <div
+    className="pointer button"
+    onClick={() => this.setState({ login: !login })}
+  >
+    {login ? 'need to create an account?' : 'already have an account?'}
+  </div>
+</div>
+</div>
       </div>
-    );
+    )
+  }
+
+  _confirm = async () => {
+    // ... you'll implement this 🔜
+  }
+
+  _saveUserData = token => {
+    localStorage.setItem(AUTH_TOKEN, token)
   }
 }
 
-export default index;
+export default Login
