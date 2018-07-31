@@ -1,13 +1,25 @@
 import React, { Component } from "react";
-export class CreateTrip extends Component {
+import {geolocated} from 'react-geolocated';
+class CreateTrip extends React.Component {
   render() {
-    console.log("CREATE TRIP");
-    return (
-      <div>
-        <h2>This is the create trip page</h2>
-      </div>
-    );
+    return !this.props.isGeolocationAvailable
+      ? <div>Your browser does not support Geolocation</div>
+      : !this.props.isGeolocationEnabled
+        ? <div>Geolocation is not enabled</div>
+        : this.props.coords
+          ? <table>
+            <tbody>
+              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
+              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
+            </tbody>
+          </table>
+          : <div>Getting the location data&hellip; </div>;
   }
 }
-
-export default CreateTrip;
+ 
+export default geolocated({
+  positionOptions: {
+    enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 5000,
+})(CreateTrip);
