@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import { Switch, Route } from "react-router-dom";
-import Navigation from "../Navigation";
+
 export class index extends Component {
   render() {
     const {
@@ -11,7 +11,7 @@ export class index extends Component {
     return (
       <div>
       <div>
-        <Navigation />
+        
         <h2>This is the my trips page</h2>
         </div>
       
