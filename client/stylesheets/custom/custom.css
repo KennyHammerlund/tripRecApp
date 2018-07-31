@@ -6,3 +6,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.block{
+  display: block !important;
+}
+.pointer{
+  cursor: pointer !important;
+}
