@@ -119,7 +119,7 @@ class Login extends Component {
   _confirm = async data => {
     const Login  = this.state.login ? data.Login : data.Signup;
     this._saveUserData(Login);
-    this.props.history.push(`/`);
+    this.props.history.push(`/dashboard`);
   }
   
 

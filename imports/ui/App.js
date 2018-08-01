@@ -5,24 +5,28 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import { AUTH_TOKEN } from './constants';
 
 import login from "./pages/Login";
 import AppLayout from "../ui/AppLayout";
 
-//use MainRoutes.js to store pages inside the navigation container
 
 class App extends Component {
   render() {
-    console.log("------PROPS------");
-    console.log(this.props);
-
+    const authToken = localStorage.getItem(AUTH_TOKEN);
+    const isLoggedIn = authToken ? authToken != '' ? true : false : false;
     return (
       <Router>
         <Switch>
           <Route
             exact
             path="/"
-            component={() => <Redirect to="/dashboard" />}
+            component={() => {
+              if(!isLoggedIn){
+                return <Redirect to="/login" />;
+              }
+              return <Redirect to="/dashboard" />;
+            }}
           />
           <Route path="/login" component={login} />
           <Route component={AppLayout} />
