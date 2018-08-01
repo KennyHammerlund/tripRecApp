@@ -15,9 +15,12 @@ const dashQuery = gql`
 `;
 export class AppLayout extends Component {
   render() {
+    console.log(`...`);
+    console.log(this.props);
+    const {history} = this.props;
     return (
       <div className="ui">
-        <Navigation />
+        <Navigation history={history} />
         <div className="content">
           <Main />
         </div>

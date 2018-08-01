@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 // import { Switch, Route } from "react-router-dom";
+import Trip from '../../components/trip';
 
 const tripsQuery = gql`
   {
@@ -25,7 +26,7 @@ export class index extends Component {
     } = this.props;
     console.log("------MYTRIPROPS------");
     console.log(this.props);
-    const{data:{allTrips}} = this.props;
+    const{user} = this.props.data;
 
     return (
 
@@ -38,7 +39,7 @@ export class index extends Component {
         <table>
           <tbody>
             <tr><td>My First Trip: </td><td>{this.props.trips}</td></tr>
-            {allTrips.map(trip => <Trip trip={trip} />)}
+            {user && user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />) : null}
           </tbody>
         </table>
 

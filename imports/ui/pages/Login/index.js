@@ -15,25 +15,22 @@ class Login extends Component {
     login: true, // switch between Login and SignUp
     email: '',
     password: '',
-    name: '',
+    firstName: '',
+    lastName: '',
   }
     
   render() {
     const SIGNUP_MUTATION = gql`
-    mutation($email: String!, $password: String!, $name: String!) {
-      Signup(email: $email, password: $password, name: $name) {
-        token
-      }
+    mutation($email: String!, $password: String!, $firstName: String!, $lastName: String!) {
+      Signup(email: $email, password: $password, firstName: $firstName, lastName: $lastName) 
     }
     `
     const LOGIN_MUTATION = gql`
     mutation ($email: String!, $password: String!) {
-      Login(email: $email, password: $password) {
-        token
-      }
+      Login(email: $email, password: $password) 
     }`
 
-    const { login, email, password, name } = this.state
+    const { login, email, password, firstName, lastName } = this.state
     
     return (
       <div className="form-login">
@@ -45,19 +42,31 @@ class Login extends Component {
           />
 
         <div className="flex flex-column m-b-20">
-          <h4 className="mv3">{login ? 'Login To TripRec' : 'Sign Up For TripRec'}</h4>
-          
+          <h4 className="text-center">{login ? 'Login To TripRec' : 'Sign Up For TripRec'}</h4>
+           
             {!login && (
-              <FormControl className="Block">
-                <InputLabel htmlFor="username">Name</InputLabel>
-                <Input
-                id="username"
-                value={name}
-                type="text"
-                fullWidth={true}
-                onChange={e => this.setState({ name: e.target.value })}
-                label="Username" />
-              </FormControl>              
+              <div>
+                <FormControl className="Block">
+                  <InputLabel htmlFor="firstName">First Name</InputLabel>
+                  <Input
+                  id="firstName"
+                  value={firstName}
+                  type="text"
+                  fullWidth={true}
+                  onChange={e => this.setState({ firstName: e.target.value })}
+                  label="firstName" />
+                </FormControl>
+                <FormControl className="Block">
+                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                  <Input
+                  id="lastName"
+                  value={lastName}
+                  type="text"
+                  fullWidth={true}
+                  onChange={e => this.setState({ lastName: e.target.value })}
+                  label="lastName" />
+                </FormControl>   
+              </div>             
             )}
 
               <FormControl className="block">
@@ -85,7 +94,7 @@ class Login extends Component {
 
         <Mutation
           mutation={login ? LOGIN_MUTATION : SIGNUP_MUTATION}
-          variables={{ email, password, name }}
+          variables={{ email, password, firstName, lastName }}
           onCompleted={data => this._confirm(data)}
         >  
           {mutation => ( 
@@ -108,15 +117,16 @@ class Login extends Component {
   }
   
   _confirm = async data => {
-    const { token } = this.state.login ? data.login : data.signup
-    console.log(`Token: ${token}`);
-    this._saveUserData(token)
-    this.props.history.push(`/`)
+    const Login  = this.state.login ? data.Login : data.Signup;
+    this._saveUserData(Login);
+    this.props.history.push(`/`);
   }
   
 
   _saveUserData = token => {
+    console.log(`Token is ${token}`);
     localStorage.setItem(AUTH_TOKEN, token)
+    console.log(`Get token ${localStorage.getItem(AUTH_TOKEN)}`);
   }
 };
   
