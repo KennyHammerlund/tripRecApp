@@ -10,6 +10,7 @@
     "apollo": "^1.4.0",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.0.4",
+    "apollo-link-context": "^1.0.8",
     "apollo-link-http": "^1.5.4",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.2",
