@@ -2,25 +2,42 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link } from "react-router-dom";
-import AUTH_TOKEN from '../../constants';
+import {AUTH_TOKEN} from '../../constants';
+import jwt_decode from 'jwt-decode';
+
 const navQuery = gql`
   {
     user(id: 65) {
       lastName
       firstName
+      displayName
     }
   }
 `;
 
 export class index extends Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      displayName: ''
+    }
+  }
+
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN);
-    console.log("------PROPS------");
+    let firstName, lastName;
+    if(authToken && authToken != ''){
+      var decoded = jwt_decode(authToken);
+       firstName = decoded.firstName;
+       lastName = decoded.lastName;
+    }
+
     console.log(this.props);
-    console.log(authToken);
     const {
       data: { user }
     } = this.props;
+    
+
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
@@ -50,16 +67,12 @@ export class index extends Component {
         </div>
         <div className="col-xs-2 col-lg-1">
           <div className="flex flex-fixed black">
-            <div className="fw7 mr1">Hacker News</div>
-            <Link to="/" className="ml1 no-underline black">
-              new
-            </Link>
             {authToken && (
               <div className="flex">
-                <div className="ml1">|</div>
-                <Link to="/create" className="ml1 no-underline black">
-                  submit
-                </Link>
+              {firstName && lastName ? 
+                `Logged in as ${firstName} ${lastName}`
+               : "Guest View"
+              }
               </div>
             )}
           </div>
@@ -69,7 +82,7 @@ export class index extends Component {
                 className="ml1 pointer black"
                 onClick={() => {
                   localStorage.removeItem(AUTH_TOKEN)
-                  this.props.history.push(`/`)
+                  this.props.history.push(`/login`)
                 }}
               >
                 logout

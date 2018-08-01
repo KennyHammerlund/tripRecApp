@@ -3,6 +3,7 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Trip from '../../components/trip'
 // import { Switch, Route } from "react-router-dom";
+import Trip from '../../components/trip';
 
 const tripsQuery = gql`
   {
