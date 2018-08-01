@@ -9,8 +9,9 @@ export class CreateTrip extends React.Component {
         : this.props.coords
           ? <table>
             <tbody>
-              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
-              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
+              <tr><td>latitude for your location</td><td>{this.props.coords.latitude}</td></tr>
+              <tr><td>longitude for your location</td><td>{this.props.coords.longitude}</td></tr>
+              <tr><td>would you like to enter your next location?</td></tr>
             </tbody>
           </table>
           : <div>Getting the location data&hellip; </div>;
