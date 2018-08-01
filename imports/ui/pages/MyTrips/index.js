@@ -3,7 +3,6 @@ import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Trip from '../../components/trip'
 // import { Switch, Route } from "react-router-dom";
-import Trip from '../../components/trip';
 
 const tripsQuery = gql`
   {
@@ -40,17 +39,9 @@ export class index extends Component {
       
         <table>
           <tbody>
-            {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} />):null}
+            {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />):null}
           </tbody>
         </table>
-
-
-      
-        {/* <Switch>
-          Switches between login/logout and forgot passoword components
-          <Route path={path} Component={test} />
-        </Switch> */}
-      
       </div>
     );
   }
