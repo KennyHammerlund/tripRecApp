@@ -4,7 +4,10 @@ import gql from "graphql-tag";
 import { Link } from "react-router-dom";
 import {AUTH_TOKEN} from '../../constants';
 import jwt_decode from 'jwt-decode';
+import { LinkContainer } from 'react-router-bootstrap';
 
+import Modal from '../../components/modal';
+import { ButtonToolbar, MenuItem, DropdownButton } from 'react-bootstrap';
 const navQuery = gql`
   {
     user(id: 65) {
@@ -15,29 +18,29 @@ const navQuery = gql`
   }
 `;
 
+
 export class index extends Component {
   constructor(props){
     super(props)
-    this.state ={
-      displayName: ''
-    }
-  }
-
-  render() {
     const authToken = localStorage.getItem(AUTH_TOKEN);
-    let firstName, lastName;
-    if(authToken && authToken != ''){
-      var decoded = jwt_decode(authToken);
-       firstName = decoded.firstName;
-       lastName = decoded.lastName;
+    var decoded = authToken && authToken !='' ? jwt_decode(authToken) : null;
+    const firstName = decoded ? decoded.firstName : null;
+    const lastName = decoded ? decoded.lastName : null;
+    this.state ={
+      displayName: '',
+      loggedIn: authToken && authToken != '',
+      firstName,
+      lastName
     }
-
-    console.log(this.props);
+    }
+  
+  render() {
+    
     const {
-      data: { user }
+      data: { user }, history
     } = this.props;
     
-
+    const { loggedIn, firstName, lastName } = this.state;
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
@@ -47,17 +50,7 @@ export class index extends Component {
         </div>
         <div className="col-xs-1 col-lg-2">
           <h5>
-            <Link to="/createtrip">Create trip</Link>
-          </h5>
-        </div>
-        <div className="col-xs-1 col-lg-2">
-          <h5>
             <Link to="/currenttrip">Current Trip</Link>
-          </h5>
-        </div>
-        <div className="col-xs-1 col-lg-1">
-          <h5>
-            <Link to="/mytrips">My Trips</Link>
           </h5>
         </div>
         <div className="col-xs-1 col-lg-1">
@@ -66,33 +59,41 @@ export class index extends Component {
           </h5>
         </div>
         <div className="col-xs-2 col-lg-1">
-          <div className="flex flex-fixed black">
-            {authToken && (
-              <div className="flex">
-              {firstName && lastName ? 
-                `Logged in as ${firstName} ${lastName}`
-               : "Guest View"
+          <ButtonToolbar>
+            <DropdownButton
+              bsSize="small"
+              title="Login button"
+              id="dropdown-size-large"
+              title={firstName && lastName ? 
+                `${firstName} ${lastName.charAt(0)}.`
+               : "Guest"
               }
-              </div>
-            )}
-          </div>
-          <div className="flex flex-fixed">
-            {authToken ? (
-              <div
-                className="ml1 pointer black"
+            >
+              
+              {loggedIn && 
+              <div>
+                <LinkContainer to='/mytrips'>
+                  <MenuItem eventKey="1">My Trips</MenuItem>
+                </LinkContainer>
+                <LinkContainer to='/createtrip'>  
+                  <MenuItem eventKey="2">Create Trip</MenuItem>
+                </LinkContainer>
+                <MenuItem divider />
+                <MenuItem eventKey="4"><span 
                 onClick={() => {
-                  localStorage.removeItem(AUTH_TOKEN)
-                  this.props.history.push(`/login`)
-                }}
-              >
-                logout
-              </div>
-            ) : (
-              <Link to="/login" className="ml1 no-underline black">
-                login
-              </Link>
-            )}
-          </div>
+                  localStorage.removeItem(AUTH_TOKEN);
+                  this.props.history.push(`/login`);
+                }}>Logout</span></MenuItem>
+              </div>}
+              {!loggedIn && 
+                <div>
+                  <LinkContainer to="/login">
+                   <MenuItem eventKey="5">Login</MenuItem>
+                  </LinkContainer>
+                </div>
+              }
+            </DropdownButton>
+          </ButtonToolbar>
         </div>
       </div>
     );

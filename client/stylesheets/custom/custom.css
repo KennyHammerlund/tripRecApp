@@ -12,3 +12,6 @@ body {
 .pointer{
   cursor: pointer !important;
 }
+.content{
+  min-height: 80vh;
+}
