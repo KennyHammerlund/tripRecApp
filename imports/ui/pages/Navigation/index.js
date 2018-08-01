@@ -44,7 +44,7 @@ export class index extends Component {
         </div>
         <div className="col-xs-1 col-lg-1">
           <h5>
-            <Link to="#">Browse trips</Link>
+            <Link to="/browsetrips">Browse trips</Link>
           </h5>
         </div>
         <div className="col-xs-2 col-lg-1">
