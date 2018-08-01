@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import Trip from '../../components/trip'
 // import { Switch, Route } from "react-router-dom";
 
 const tripsQuery = gql`
@@ -12,11 +13,11 @@ const tripsQuery = gql`
         id
         title
         comments
-        description
       }
     }
   }
-`;
+`
+
 
 export class index extends Component {
   render() {
@@ -25,8 +26,9 @@ export class index extends Component {
     } = this.props;
     console.log("------MYTRIPROPS------");
     console.log(this.props);
-    const{data:{allTrips}} = this.props;
-
+    const{data} = this.props;
+    const {user}=data;
+    
     return (
 
       <div>
@@ -37,8 +39,7 @@ export class index extends Component {
       
         <table>
           <tbody>
-            <tr><td>My First Trip: </td><td>{this.props.trips}</td></tr>
-            {allTrips.map(trip => <Trip trip={trip} />)}
+            {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} />):null}
           </tbody>
         </table>
 
