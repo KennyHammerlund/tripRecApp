@@ -17,6 +17,7 @@ export class index extends Component {
     const authToken = localStorage.getItem(AUTH_TOKEN);
     console.log("------PROPS------");
     console.log(this.props);
+    console.log(authToken);
     const {
       data: { user }
     } = this.props;

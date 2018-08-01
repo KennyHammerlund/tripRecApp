@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 
 class trip extends Component {
-
-
     render() {
-        const {id,description,title}= this.props.trip;
-        console.log(this.props.trip);
-        console.log(this.props);
+        const{data:{id,title,comments,description}}=this.props;
         return (
-            <tr>
-                <td>{id}</td>
-                <td>{description}</td>
-                <td>{title}</td>
-            </tr>  
+                <tr>
+                    <td>{id}</td>
+                    <td>{title}</td>
+                    <td>{comments}</td>
+                    <td>{description}</td>
+                </tr>
         );
     }
 }
