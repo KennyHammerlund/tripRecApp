@@ -4,8 +4,9 @@ class trip extends Component {
 
 
     render() {
-        const {id,description,title}= this.props;
-
+        const {id,description,title}= this.props.trip;
+        console.log(this.props.trip);
+        console.log(this.props);
         return (
             <tr>
                 <td>{id}</td>

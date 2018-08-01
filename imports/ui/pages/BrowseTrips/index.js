@@ -7,11 +7,10 @@ const tripsQuery = gql`
     allTrips{
         id
         title
-        description
     }
 }
   
-`;
+`
 export class index extends Component {
   render() {
     
@@ -28,7 +27,7 @@ export class index extends Component {
       </div>
         <table>
             <tbody>
-            {allTrips.map(trip => <Trip trip={trip} />)}
+            {allTrips?allTrips.map(trip => <Trip trip={trip} />):null}
             </tbody>
           </table>
 
