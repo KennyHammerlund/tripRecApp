@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import {AUTH_TOKEN} from '../../constants';
 import jwt_decode from 'jwt-decode';
 import { LinkContainer } from 'react-router-bootstrap';
-
-import Modal from '../../components/modal';
 import { ButtonToolbar, MenuItem, DropdownButton } from 'react-bootstrap';
+
+import Image from '../../components/Image';
+
 const navQuery = gql`
   {
     user(id: 65) {
@@ -44,9 +45,7 @@ export class index extends Component {
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
-          <h3>
-            <Link to="/">TripRec: App</Link>
-          </h3>
+            <Link to="/" className="m-l-15 banner-name">TripRec</Link>
         </div>
         <div className="col-xs-1 col-lg-2">
           <h5>

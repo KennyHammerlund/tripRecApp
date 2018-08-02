@@ -42,11 +42,12 @@ class Login extends Component {
           />
 
         <div className="flex flex-column m-b-20">
-          <h4 className="text-center">{login ? 'Login To TripRec' : 'Sign Up For TripRec'}</h4>
+          <h2 className="text-center">{login ? 'Login To TripRec' : 'Sign Up For TripRec'}</h2>
            
             {!login && (
               <div>
-                <FormControl className="Block">
+                <div>
+                <FormControl className="Block form-default">
                   <InputLabel htmlFor="firstName">First Name</InputLabel>
                   <Input
                   id="firstName"
@@ -54,8 +55,11 @@ class Login extends Component {
                   type="text"
                   fullWidth={true}
                   onChange={e => this.setState({ firstName: e.target.value })}
-                  label="firstName" />
+                  label="firstName" 
+                  />
                 </FormControl>
+                </div>
+                <div>
                 <FormControl className="Block">
                   <InputLabel htmlFor="lastName">Last Name</InputLabel>
                   <Input
@@ -66,10 +70,11 @@ class Login extends Component {
                   onChange={e => this.setState({ lastName: e.target.value })}
                   label="lastName" />
                 </FormControl>   
+                </div>
               </div>             
             )}
 
-              <FormControl className="block">
+              <FormControl className="block form-default">
                 <InputLabel htmlFor="email">E-Mail</InputLabel>
                 <Input
                 id="email"
@@ -80,7 +85,7 @@ class Login extends Component {
                 label="email" />
               </FormControl>   
               
-              <FormControl className="block">
+              <FormControl className="block form-default">
                 <InputLabel htmlFor="password">Password</InputLabel>
                 <Input
                 fullWidth={true}

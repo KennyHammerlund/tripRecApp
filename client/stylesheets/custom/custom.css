@@ -15,3 +15,11 @@ body {
 .content{
   min-height: 80vh;
 }
+.form-default{
+  font-size: 18px;
+}
+.banner-name{
+  font-size: 26px;
+  text-align: middle;
+  padding: 5px;
+}
