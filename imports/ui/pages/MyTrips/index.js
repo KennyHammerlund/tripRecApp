@@ -44,7 +44,7 @@ export class index extends Component {
       <div className="flex flex-column m-b-20">
         <div class="col-lg-8">
           <div class="card-box">
-            <h4 class ="text-dark header-title m-t-0">Your Trips</h4>
+            <h1 class ="text-dark header-title m-t-0">Your Trips</h1>
           
             <p class="text-muted m-b-25 font-13">go out and complete more trips!</p>
          
