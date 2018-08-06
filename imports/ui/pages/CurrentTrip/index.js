@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { graphql } from "../../../../node_modules/@types/graphql";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 const currentTripQuery = gql`
   query currentTripQuery($id: Int!) {
     userTrip(id: $id) {
@@ -48,7 +49,7 @@ export class index extends Component {
   }
 }
 
-export default graphql(queryname, {
+export default graphql(currentTripQuery, {
   options: () => ({
     variables: {
       userTripId
