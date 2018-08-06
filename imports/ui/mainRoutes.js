@@ -19,6 +19,7 @@ export class mainRoutes extends Component {
         <Route exact path="/currenttrip" component={CurrentTrip} />
         <Route exact path="/mytrips" component={MyTrips} />
         <Route exact path="/browsetrips" component={BrowseTrips} />
+        <Route path="/currenttrip/:userTripId" component={CurrentTrip} />
       </Switch>
     );
   }
