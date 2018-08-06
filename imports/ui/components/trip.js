@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class trip extends Component {
     render() {
-        const{id,title,comments,description}=this.props.trip;
+        const{id,comments,trip:{description, title}}=this.props.trip;
         console.log(this.props.trip)
         return (
                 <tr>

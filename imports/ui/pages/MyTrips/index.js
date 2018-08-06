@@ -52,20 +52,13 @@ export class index extends Component {
               <table class ="table mb-0">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>ID</th>
                   <th>Title</th>
-                  <th>Picture</th>
                   <th>Comments</th>
+                  <th>Description</th>
                 </tr>
               </thead>
-            <tbody class = "centered">
-              <tr>1</tr>
-                <td>hard coded</td>
-                <td>hard coded</td>
-                <td>hard coded</td>
-              <tr>2</tr>
-              <tr>3</tr>
-              <tr>4</tr>
+            <tbody>
               {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />):null}
             </tbody>
           </table>
