@@ -23,3 +23,6 @@ body {
   text-align: middle;
   padding: 5px;
 }
+.hide{
+  display: hide !important;
+}

@@ -1,35 +1,45 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import Trip from '../../components/trip';
+import Maintrip from '../../components/maintrip';
 const tripsQuery = gql`
   {
-    allTrips{
+    allTrips {
+      id
+      title
+      date
+      description
+      stops {
         id
-        title
+        name
+      }
+      userTrips {
+        id
+        comments
+        trip {
+          title
+          description
+        }
+      }
     }
-}
+  }
   
 `
 export class index extends Component {
   render() {
     
-    console.log("------browseTrips------");
-    console.log(this.props);
     const {data:{allTrips}} = this.props;
     
     return (
       <div>
       <div>
         <div>
-          <h2>Browse trips here</h2>
+          <h2>Browse for trips!</h2>
           </div>
       </div>
-        <table>
-            <tbody>
-            {allTrips?allTrips.map(trip => <Trip trip={trip} />):null}
-            </tbody>
-          </table>
+      
+            {allTrips?allTrips.map(trip => <Maintrip trip={trip} />):null}
+          
 
        </div>   
     );
