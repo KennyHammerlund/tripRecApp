@@ -2,36 +2,50 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import { Link } from "react-router-dom";
-import AUTH_TOKEN from '../../constants';
+import {AUTH_TOKEN} from '../../constants';
+import jwt_decode from 'jwt-decode';
+import { LinkContainer } from 'react-router-bootstrap';
+import { ButtonToolbar, MenuItem, DropdownButton } from 'react-bootstrap';
+
+import Image from '../../components/Image';
+
 const navQuery = gql`
   {
     user(id: 65) {
       lastName
       firstName
+      displayName
     }
   }
 `;
 
+
 export class index extends Component {
-  render() {
+  constructor(props){
+    super(props)
     const authToken = localStorage.getItem(AUTH_TOKEN);
-    console.log("------PROPS------");
-    console.log(this.props);
-    console.log(authToken);
+    var decoded = authToken && authToken !='' ? jwt_decode(authToken) : null;
+    const firstName = decoded ? decoded.firstName : null;
+    const lastName = decoded ? decoded.lastName : null;
+    this.state ={
+      displayName: '',
+      loggedIn: authToken && authToken != '',
+      firstName,
+      lastName
+    }
+    }
+  
+  render() {
+    
     const {
-      data: { user }
+      data: { user }, history
     } = this.props;
+    
+    const { loggedIn, firstName, lastName } = this.state;
     return (
       <div className="row top-nav bg-primary">
         <div className="col-xs-6 col-lg-5">
-          <h3>
-            <Link to="/">TripRec: App</Link>
-          </h3>
-        </div>
-        <div className="col-xs-1 col-lg-2">
-          <h5>
-            <Link to="/createtrip">Create trip</Link>
-          </h5>
+            <Link to="/" className="m-l-15 banner-name">TripRec</Link>
         </div>
         <div className="col-xs-1 col-lg-2">
           <h5>
@@ -40,46 +54,45 @@ export class index extends Component {
         </div>
         <div className="col-xs-1 col-lg-1">
           <h5>
-            <Link to="/mytrips">My Trips</Link>
-          </h5>
-        </div>
-        <div className="col-xs-1 col-lg-1">
-          <h5>
-            <Link to="/browsetrips">Browse trips</Link>
+            <Link to="#">Browse trips</Link>
           </h5>
         </div>
         <div className="col-xs-2 col-lg-1">
-          <div className="flex flex-fixed black">
-            <div className="fw7 mr1">Hacker News</div>
-            <Link to="/" className="ml1 no-underline black">
-              new
-            </Link>
-            {authToken && (
-              <div className="flex">
-                <div className="ml1">|</div>
-                <Link to="/create" className="ml1 no-underline black">
-                  submit
-                </Link>
-              </div>
-            )}
-          </div>
-          <div className="flex flex-fixed">
-            {authToken ? (
-              <div
-                className="ml1 pointer black"
+          <ButtonToolbar>
+            <DropdownButton
+              bsSize="small"
+              title="Login button"
+              id="dropdown-size-large"
+              title={firstName && lastName ? 
+                `${firstName} ${lastName.charAt(0)}.`
+               : "Guest"
+              }
+            >
+              
+              {loggedIn && 
+              <div>
+                <LinkContainer to='/mytrips'>
+                  <MenuItem eventKey="1">My Trips</MenuItem>
+                </LinkContainer>
+                <LinkContainer to='/createtrip'>  
+                  <MenuItem eventKey="2">Create Trip</MenuItem>
+                </LinkContainer>
+                <MenuItem divider />
+                <MenuItem eventKey="4"><span 
                 onClick={() => {
-                  localStorage.removeItem(AUTH_TOKEN)
-                  this.props.history.push(`/`)
-                }}
-              >
-                logout
-              </div>
-            ) : (
-              <Link to="/login" className="ml1 no-underline black">
-                login
-              </Link>
-            )}
-          </div>
+                  localStorage.removeItem(AUTH_TOKEN);
+                  this.props.history.push(`/login`);
+                }}>Logout</span></MenuItem>
+              </div>}
+              {!loggedIn && 
+                <div>
+                  <LinkContainer to="/login">
+                   <MenuItem eventKey="5">Login</MenuItem>
+                  </LinkContainer>
+                </div>
+              }
+            </DropdownButton>
+          </ButtonToolbar>
         </div>
       </div>
     );

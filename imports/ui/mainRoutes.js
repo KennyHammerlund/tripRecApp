@@ -12,8 +12,6 @@ import BrowseTrips from "./pages/BrowseTrips";
 
 export class mainRoutes extends Component {
   render() {
-    console.log("------PROPS------");
-    console.log(this.props);
     return (
       <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
