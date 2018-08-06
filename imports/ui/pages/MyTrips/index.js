@@ -5,17 +5,27 @@ import Trip from '../../components/trip'
 // import { Switch, Route } from "react-router-dom";
 
 const tripsQuery = gql`
-  {
-    user(id: 5) {
-      firstName
-      lastName
-      trips{
+{
+  user(id: 6) {
+    id
+    firstName
+    lastName
+    trips {
+      id
+      date
+      comments
+      trip {
         id
+        date
         title
-        comments
+        description
+        createdBy {
+          firstName
+        }
       }
     }
   }
+}
 `
 
 
