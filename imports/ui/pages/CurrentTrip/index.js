@@ -1,58 +1,67 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
+import Moment from 'moment';
 
 const query =  gql`
-  query currentTripQuery($id: Int!) {
-    userTrip(id: $id) {
+query currentTripQuery($id: Int!) {
+  userTrip(id: $id) {
+    id
+    date
+    images {
       id
-      date
-      images {
+      link
+    }
+    comments
+    trip {
+      id
+      description
+      stops {
         id
+        name
+        lat
+        long
+      }
+    }
+    user {
+      firstName
+      lastName
+      email
+      profileImage {
         link
-      }
-      comments
-      trip {
-        id
-        description
-        stops {
-          id
-          name
-          lat
-          long
-        }
-      }
-      user {
-        firstName
-        lastName
-        email
-        profileImage {
-          link
-        }
       }
     }
   }
+}
 `
 
 export class index extends Component {
   constructor(props){
-    super(props);
-    
+    super(props); 
   }
-  
 
   render() {
-    const { match } = this.props;
+    const { match, data:{ userTrip } } = this.props;
     const {
       params: { userTripId }
     } = match;
-    
-    return (
+
+    return userTrip ? (
       <div>
         <div>
-          <h2>This is the current trip page</h2>
-          <h3>{userTripId}</h3>
+            <h1>Trip Title</h1>
+            {userTrip.trip.description}
         </div>
+        <div>
+          {`Created by: ${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)}. on ${Moment(userTrip.date).format("MMM Do")}`}
+        </div>
+        <div>
+          <p>{userTrip.comments}</p>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <h3>No Data Available</h3>
       </div>
     );
   }
