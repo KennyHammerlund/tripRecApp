@@ -42,7 +42,7 @@ export class index extends Component {
     return (
       <div>
         <div>
-          <h2>This is the current trip page</h2>
+          <h2>-This is the current trip page</h2>
         </div>
       </div>
     );
