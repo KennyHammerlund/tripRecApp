@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-const currentTripQuery = gql`
+
+const query =  gql`
   query currentTripQuery($id: Int!) {
     userTrip(id: $id) {
       id
@@ -31,28 +32,36 @@ const currentTripQuery = gql`
       }
     }
   }
-`;
+`
 
 export class index extends Component {
+  constructor(props){
+    super(props);
+    
+  }
+  
+
   render() {
     const { match } = this.props;
     const {
       params: { userTripId }
     } = match;
+    
     return (
       <div>
         <div>
           <h2>This is the current trip page</h2>
+          <h3>{userTripId}</h3>
         </div>
       </div>
     );
   }
 }
 
-export default graphql(currentTripQuery, {
-  options: () => ({
+export default graphql(query, {
+  options: (ownProps) => ({
     variables: {
-      userTripId
+      id: ownProps.match.params.userTripId
     }
   })
 })(index);

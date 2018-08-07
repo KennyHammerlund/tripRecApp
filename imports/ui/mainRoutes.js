@@ -15,11 +15,15 @@ export class mainRoutes extends Component {
     return (
       <Switch>
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/createtrip" component={CreateTrip} />
-        <Route exact path="/currenttrip" component={CurrentTrip} />
+        <Route path="/createtrip" component={CreateTrip} />
+        {/* <Route path="/currenttrip" component={CurrentTrip} /> */}
         <Route exact path="/mytrips" component={MyTrips} />
         <Route exact path="/browsetrips" component={BrowseTrips} />
-        <Route path="/currenttrip/:userTripId" component={CurrentTrip} />
+        <Route path="/currenttrip/:userTripId" 
+        render={(props) => {
+        console.log(props);
+        return <CurrentTrip {...props} />} } 
+         />
       </Switch>
     );
   }
