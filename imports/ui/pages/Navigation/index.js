@@ -49,15 +49,15 @@ export class index extends Component {
         </div>
         <div className="col-xs-1 col-lg-2">
           <h5>
-            <Link to="/currenttrip">Current Trip</Link>
+            <Link to="/currenttrip"><button type="button" class="btn btn-warning btn-rounded w-md waves-effect waves-light m-b-5">Current Trip</button></Link>
           </h5>
         </div>
         <div className="col-xs-1 col-lg-1">
           <h5>
-            <Link to="/browsetrips">Browse trips</Link>
+            <Link to="/browsetrips"><button type="button" class="btn btn-warning btn-rounded w-md waves-effect waves-light m-b-5">Browse Trip</button></Link>
           </h5>
         </div>
-        <div className="col-xs-2 col-lg-1">
+        <div className="col-xs-1 col-lg-3">
           <ButtonToolbar>
             <DropdownButton
               bsSize="small"

@@ -33,8 +33,8 @@ export class index extends Component {
     return (
       <div>
       <div>
-        <div>
-          <h2>Browse for trips!</h2>
+        <div >
+          <h1>Browse for trips!</h1>
           </div>
       </div>
       

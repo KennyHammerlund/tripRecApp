@@ -26,7 +26,7 @@ class Maintrip extends Component {
         return (
                 <div>
                    <div>
-                   <h1>{title}</h1>
+                   <h2>{title}</h2>
                      <button onClick={this.hide}>hide</button>
                    </div>
                      <div className={hide?"hide":"block"}> 
