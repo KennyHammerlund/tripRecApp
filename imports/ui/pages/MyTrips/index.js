@@ -42,14 +42,14 @@ export class index extends Component {
     return (
 
       <div className="flex flex-column m-b-20">
-        <div class="col-lg-8">
-          <div class="card-box">
-            <h1 class ="text-dark header-title m-t-0">Your Trips</h1>
+        <div className="col-lg-8">
+          <div className="card-box">
+            <h1 className ="text-dark header-title m-t-0">Your Trips</h1>
           
-            <p class="text-muted m-b-25 font-13">go out and complete more trips!</p>
+            <p className="text-muted m-b-25 font-13">go out and complete more trips!</p>
          
-            <div class = "table-responsive">
-              <table class ="table mb-0">
+            <div className = "table-responsive">
+              <table className ="table mb-0">
               <thead>
                 <tr>
                   <th>ID</th>
