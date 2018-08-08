@@ -1,28 +1,46 @@
 body {
   max-height: 1000000em;
   padding: 0 !important;
+  background-color: #f5f5f5;
 }
 .m-lr-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.block{
+.block {
   display: block !important;
 }
-.pointer{
+.pointer {
   cursor: pointer !important;
 }
-.content{
+.content {
   min-height: 80vh;
+  background-color: #f5f5f5;
 }
-.form-default{
+.form-default {
   font-size: 18px;
 }
-.banner-name{
+.banner-name {
   font-size: 26px;
   text-align: middle;
   padding: 5px;
 }
-.hide{
+.hide {
   display: hide !important;
+}
+.nav-bg {
+  background-color: #6d4c41;
+  padding-top: 15px;
+}
+.banner-name {
+  color: #fff;
+}
+.full-width {
+  width: 100%;
+}
+.dropdown-menu li {
+  padding-left: 10px;
+}
+.dropdown-menu li a {
+  color: #000;
 }

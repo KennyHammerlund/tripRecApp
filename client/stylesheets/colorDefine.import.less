@@ -1,14 +1,21 @@
-@import "./color.import.less";
+@import "client/stylesheets/color.import.less";
 
 @base: #6d4c41;
 @red: #c93300;
 @base-lighten: lighten(@base, 20%);
 @green: #00c853;
 
-.themeColor(primary, @base);
+.themeColor(pri, @base);
 .themeColor(success, spin(@base, -50));
 .themeColor(info, @base-lighten);
 .themeColor(light, #e9e9e9);
 .themeColor(warning, spin(@red, 40));
 .themeColor(danger, @red);
 .themeColor(green, @green);
+
+.themeColor(@name, @color) {
+  .label-@{name} {
+    background-color: @color;
+    color: #ffffff;
+  }
+}

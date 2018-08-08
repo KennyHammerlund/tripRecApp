@@ -1,14 +1,3 @@
-.circle(@selector, @color) {
-  .circle.@{selector} {
-    color: @color;
-    box-shadow: 0 0 0 2px @color;
-  }
-  .eventNav .circle.@{selector} {
-    color: #fff;
-    background-color: @color;
-  }
-}
-
 .themeColor(@name, @color) {
   .text-@{name} {
     color: @color;
@@ -41,7 +30,7 @@
     }
   }
 
-  .bg-@{name} {
+  .bg-color-@{name} {
     background-color: @color !important;
     color: contrast(@color, #ffffff, #333333) !important;
   }
