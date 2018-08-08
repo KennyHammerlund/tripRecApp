@@ -56,3 +56,9 @@ body {
 .submit-btn {
   text-align: center;
 }
+.logo {
+  background: url('../../documents/logo');
+  height:50px;
+  width: 50px;
+  display: block;
+}
