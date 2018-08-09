@@ -19,11 +19,12 @@ export class mainRoutes extends Component {
         {/* <Route path="/currenttrip" component={CurrentTrip} /> */}
         <Route exact path="/mytrips" component={MyTrips} />
         <Route exact path="/browsetrips" component={BrowseTrips} />
-        <Route path="/trip/:userTripId" 
-        render={(props) => {
-        console.log(props);
-        return <CurrentTrip {...props} />} } 
-         />
+        <Route
+          path="/trip/:userTripId"
+          render={props => {
+            return <CurrentTrip {...props} />;
+          }}
+        />
       </Switch>
     );
   }

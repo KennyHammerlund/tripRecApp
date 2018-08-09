@@ -10,8 +10,6 @@ import Token from "./components/token";
 const token = Token.get();
 export class AppLayout extends Component {
   render() {
-    console.log(`...`);
-    console.log(this.props);
     const { history, data } = this.props;
     const { viewer } = data;
     return (

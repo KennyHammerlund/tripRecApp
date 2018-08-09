@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { geolocated } from "react-geolocated";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
+import { graphql } from "react-apollo";
 
 import LargeCardBox from "../../components/largeCardBox";
 import PageTitle from "../../components/pageTitle";
@@ -18,15 +19,22 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import PersonPinIcon from "@material-ui/icons/PersonPin";
 import NotListedLocation from "@material-ui/icons/NotListedLocation";
+import Token from "../../components/token";
+import Query from "../../graphQueries/userTrips";
+import ConfirmBox from "../../components/errorBox";
+
+const token = Token.get();
 export class index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      geoAvail: this.props.isGeolocationAvailable,
       comment: "",
       title: "",
       description: "",
-      newTrip: 0
+      newTrip: 0,
+      stop: false,
+      success: false,
+      message: ""
     };
   }
   swap = e => {
@@ -34,18 +42,33 @@ export class index extends React.Component {
     const newState = this.state.newTrip === 1 ? 0 : 1;
     this.setState({ newTrip: newState });
   };
+  showStop = e => {
+    e.preventDefault();
+    this.setState({ stop: !this.state.stop });
+  };
+  _confirm = data => {
+    const message = data
+      ? "Trip Successfully Started"
+      : "Trip Insert Error: Are you logged in?";
+    this.setState({
+      success: true,
+      message
+    });
+  };
 
   render() {
     const {
-      geoAvail,
       comment,
       title,
       description,
       newTrip,
-      viewer
+      message,
+      success
     } = this.state;
-    const { coords } = this.props;
-    const userId = 55;
+    const { data } = this.props;
+    const { viewer } = data;
+    const userId = viewer ? viewer.id : null;
+    console.log(this.props);
     return (
       <div>
         <PageTitle>
@@ -180,15 +203,17 @@ export class index extends React.Component {
               </Mutation>
             </div>
           )}
+          {success && <ConfirmBox content={message} />}
         </LargeCardBox>
       </div>
     );
   }
 }
 
-export default geolocated({
-  positionOptions: {
-    enableHighAccuracy: false
-  },
-  userDecisionTimeout: 5000
+export default graphql(Query, {
+  options: () => ({
+    variables: {
+      token
+    }
+  })
 })(index);
