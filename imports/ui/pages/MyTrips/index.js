@@ -42,6 +42,7 @@ export class index extends Component {
 
     const{viewer, data} = this.props;
     const {user}=data;
+    
 /*     const {
       data: { viewer }
     } = this.props; */
@@ -63,21 +64,16 @@ export class index extends Component {
             <h1 className ="text-dark header-title m-t-0">Your Trips</h1>
           
             <p className="text-muted m-b-25 font-13">go out and complete more trips!</p>
-         
+
             <div className = "table-responsive">
-              <table className ="table mb-0">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Comments</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-            <tbody>
+                  <div className="row">
+                    <div className="col-sm-2 trip-linkheader">ID</div>
+                    <div className="col-sm-3">Title</div>
+                    <div className="col-sm-3">Comments</div>
+                    <div className="col-sm-4">Description</div>
+                  </div>
+  
               {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />):null}
-            </tbody>
-          </table>
           </div>
           </div>
         </div>

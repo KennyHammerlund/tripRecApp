@@ -6,16 +6,17 @@ class trip extends Component {
         const{id,comments,trip:{description, title}}=this.props.trip;
  
         return (
-            <Link to={`/currentTrip/${id}`}>
-                <tr>
-                    <td>{id}</td>
-                    <td>{title}</td>
-                    <td>{comments}</td>
-                    <td>{description}</td>
-                </tr>
-            </Link>
+            
+            <div className="row">
+                <Link to={`/currentTrip/${id}`}>
+                        <div className="col-sm-2">{id}</div>
+                        <div className="col-sm-3">{title}</div>
+                        <div className="col-sm-3">{comments}</div>
+                        <div className="col-sm-4">{description}</div>
+                </Link>
+            </div>
         );
     }
 }
 
-export default trip;
+export default trip; 

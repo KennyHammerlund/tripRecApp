@@ -44,3 +44,12 @@ body {
 .dropdown-menu li a {
   color: #000;
 }
+
+.trip-link {
+  color: #faebd7;
+}
+
+.trip-linkheader {
+  color: something;
+  font-weight: 500;
+}
