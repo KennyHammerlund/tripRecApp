@@ -8,7 +8,7 @@ class trip extends Component {
         return (
             
             <div className="row">
-                <Link to={`/currentTrip/${id}`}>
+                <Link to={`/trip/${id}`}>
                         <div className="col-sm-2">{id}</div>
                         <div className="col-sm-3">{title}</div>
                         <div className="col-sm-3">{comments}</div>

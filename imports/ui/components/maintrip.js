@@ -22,7 +22,8 @@ class Maintrip extends Component {
     render() {
         const{userTrips,title}=this.props.trip;
         const{hide}=this.state;
-     
+        
+        console.log(this.props)
         return (
                 <div>
                    <div>
@@ -30,20 +31,15 @@ class Maintrip extends Component {
                      <button onClick={this.hide}>hide</button>
                    </div>
                      <div className={hide?"hide":"block"}> 
-                     <div className = "table-responsive">
-              <table className ="table mb-0">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Comments</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-            <tbody>  
+              <div className = "table-responsive">
+                  <div className="row">
+                    <div className="col-sm-2 trip-linkheader">ID</div>
+                    <div className="col-sm-3">Title</div>
+                    <div className="col-sm-3">Comments</div>
+                    <div className="col-sm-4">Description</div>
+                  </div>
                     {userTrips?userTrips.map(trip => <Trip key={trip.id} trip={trip} />):null}
-                    </tbody>
-                    </table>
+
                     </div>
                    </div>
                 </div>

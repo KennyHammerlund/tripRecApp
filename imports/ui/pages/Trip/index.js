@@ -1,81 +1,76 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
-import Trip from '../../components/trip'
-// import { Switch, Route } from "react-router-dom";
+import Moment from 'moment';
 
-const userTripsQuery = gql`
-{
-    userTrip(id: 5) {
+const query =  gql`
+query TripQuery($id: Int!) {
+  userTrip(id: $id) {
+    id
+    date
+    images {
       id
-      date
-      images {
+      link
+    }
+    comments
+    trip {
+      id
+      description
+      stops {
         id
+        name
+        lat
+        long
+      }
+    }
+    user {
+      firstName
+      lastName
+      email
+      profileImage {
         link
-      }
-      comments
-      trip {
-        id
-        description
-        stops{
-          id
-          name
-          lat
-          long
-        }
-      }
-      user {
-        firstName
-        lastName
-        email
-        profileImage {
-          link
-        }
       }
     }
   }
+}
 `
 
-
 export class index extends Component {
+  constructor(props){
+    super(props); 
+  }
+
   render() {
-/*     const {
-      match: { path }
-    } = this.props;
-    console.log("------USERTRIPPROPS------");
-    console.log(this.props);
-    const{data} = this.props;
-    const {user}=data; */
-    
-    return (
-      
-      <div className="flex flex-column m-b-20">
-        <div class="col-lg-8">
-          <div class="card-box">
-            <h1 class ="text-dark header-title m-t-0">Your Trips</h1>
-          
-            <p class="text-muted m-b-25 font-13">go out and complete more trips!</p>
-         
-            <div class = "table-responsive">
-              <table class ="table mb-0">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Comments</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-            <tbody>
-              {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />):null}
-            </tbody>
-          </table>
-          </div>
-          </div>
+    const { match, data:{ userTrip } } = this.props;
+    const {
+      params: { userTripId }
+    } = match;
+
+    return userTrip ? (
+      <div>
+        <div>
+            <h1>Trip Title</h1>
+            {userTrip.trip.description}
         </div>
+        <div>
+          {`Created by: ${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)}. on ${Moment(userTrip.date).format("MMM Do")}`}
+        </div>
+        <div>
+          <p>{userTrip.comments}</p>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <h3>No Data Available</h3>
       </div>
     );
   }
 }
 
-export default  graphql(userTripsQuery)(index);
+export default graphql(query, {
+  options: (ownProps) => ({
+    variables: {
+      id: ownProps.match.params.userTripId
+    }
+  })
+})(index);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import CreateTrip from "./pages/CreateTrip";
-import CurrentTrip from "./pages/CurrentTrip";
+import CurrentTrip from "./pages/Trip";
 import MyTrips from "./pages/MyTrips";
 import Dashboard from "./pages/Dashboard";
 import BrowseTrips from "./pages/BrowseTrips";
@@ -19,7 +19,7 @@ export class mainRoutes extends Component {
         {/* <Route path="/currenttrip" component={CurrentTrip} /> */}
         <Route exact path="/mytrips" component={MyTrips} />
         <Route exact path="/browsetrips" component={BrowseTrips} />
-        <Route path="/currenttrip/:userTripId" 
+        <Route path="/trip/:userTripId" 
         render={(props) => {
         console.log(props);
         return <CurrentTrip {...props} />} } 
