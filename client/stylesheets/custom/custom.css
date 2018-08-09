@@ -55,6 +55,7 @@ body {
 .trip-linkheader {
   color: something;
   font-weight: 500;
+  font-size: 11pt;
 }
 
 .alert {

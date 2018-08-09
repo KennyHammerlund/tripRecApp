@@ -43,10 +43,6 @@ export class index extends Component {
     const{viewer, data} = this.props;
     const {user}=data;
     
-/*     const {
-      data: { viewer }
-    } = this.props; */
-    
     return (
       <div>
       <PageTitle>
@@ -62,15 +58,14 @@ export class index extends Component {
         <div className="col-lg-8">
           <div className="card-box">
             <h1 className ="text-dark header-title m-t-0">Your Trips</h1>
-          
             <p className="text-muted m-b-25 font-13">go out and complete more trips!</p>
 
             <div className = "table-responsive">
                   <div className="row">
                     <div className="col-sm-2 trip-linkheader">ID</div>
-                    <div className="col-sm-3">Title</div>
-                    <div className="col-sm-3">Comments</div>
-                    <div className="col-sm-4">Description</div>
+                    <div className="col-sm-3 trip-linkheader">Title</div>
+                    <div className="col-sm-3 trip-linkheader">Comments</div>
+                    <div className="col-sm-4 trip-linkheader">Description</div>
                   </div>
   
               {user&& user.trips ? user.trips.map(trip => <Trip trip={trip} key={trip.id} />):null}
