@@ -4,29 +4,31 @@ import gql from "graphql-tag";
 
 import Navigation from "./pages/Navigation";
 import Main from "./mainRoutes";
+import Viewer from "./graphQueries/viewer";
+import Token from "./components/token";
 
-const dashQuery = gql`
-  {
-    user(id: 55) {
-      firstName
-      lastName
-    }
-  }
-`;
+const token = Token.get();
 export class AppLayout extends Component {
   render() {
     console.log(`...`);
     console.log(this.props);
-    const {history} = this.props;
+    const { history, data } = this.props;
+    const { viewer } = data;
     return (
       <div className="ui">
-        <Navigation history={history} />
+        <Navigation history={history} viewer={viewer} />
         <div className="content">
-          <Main />
+          <Main viewer={viewer} />
         </div>
       </div>
     );
   }
 }
 
-export default graphql(dashQuery)(AppLayout);
+export default graphql(Viewer, {
+  options: () => ({
+    variables: {
+      token
+    }
+  })
+})(AppLayout);
