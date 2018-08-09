@@ -48,15 +48,7 @@ export class index extends Component {
     const {user}=data; */
     
     return (
-        <Router>
-        <Route path="/users/:id" component={Trip}/>
-        <Route path="/users/:id" render={(props) => <Trip {...props}/>}/>
-        </Router>
-
-/*         const { id, date, images, comments, trip, description, stops} = this.props */
-
-    
-/* 
+      
       <div className="flex flex-column m-b-20">
         <div class="col-lg-8">
           <div class="card-box">
@@ -81,7 +73,7 @@ export class index extends Component {
           </div>
           </div>
         </div>
-      </div> */
+      </div>
     );
   }
 }

@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 import Trip from '../../components/trip'
-// import { Switch, Route } from "react-router-dom";
+import Token from "../../components/token";
+import PageTitle from "../../components/pageTitle";
 
-const tripsQuery = gql`
+
+const Query = gql
+`
 {
   user(id: 6) {
     id
@@ -28,7 +31,7 @@ const tripsQuery = gql`
 }
 `
 
-
+const token =Token.get();
 export class index extends Component {
   render() {
     const {
@@ -36,10 +39,23 @@ export class index extends Component {
     } = this.props;
     console.log("------MYTRIPROPS------");
     console.log(this.props);
-    const{data} = this.props;
+
+    const{viewer, data} = this.props;
     const {user}=data;
+/*     const {
+      data: { viewer }
+    } = this.props; */
     
     return (
+      <div>
+      <PageTitle>
+      My Trips Page 
+      {viewer && (
+        <span className="pull-right text-muted">
+          {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
+        </span>
+      )}
+      </PageTitle>
 
       <div className="flex flex-column m-b-20">
         <div className="col-lg-8">
@@ -66,8 +82,15 @@ export class index extends Component {
           </div>
         </div>
       </div>
+      </div>
     );
   }
 }
 
-export default  graphql(tripsQuery)(index);
+export default graphql(Query, {
+  options: () => ({
+    variables: {
+      token
+    }
+  })
+})(index);
