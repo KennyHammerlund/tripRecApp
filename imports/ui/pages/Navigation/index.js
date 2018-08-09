@@ -9,38 +9,22 @@ import { ButtonToolbar, MenuItem, DropdownButton } from "react-bootstrap";
 
 import Image from "../../components/Image";
 
-const navQuery = gql`
-  {
-    user(id: 65) {
-      lastName
-      firstName
-      displayName
-    }
-  }
-`;
-
 export class index extends Component {
   constructor(props) {
     super(props);
     const authToken = Token.get();
-    var decoded = authToken && authToken != "" ? jwt_decode(authToken) : null;
-    const firstName = decoded ? decoded.firstName : null;
-    const lastName = decoded ? decoded.lastName : null;
     this.state = {
       displayName: "",
-      loggedIn: authToken && authToken != "",
-      firstName,
-      lastName
+      loggedIn: authToken && authToken != ""
     };
   }
 
   render() {
-    const {
-      data: { user },
-      history
-    } = this.props;
+    console.log(this.props);
 
-    const { loggedIn, firstName, lastName } = this.state;
+    const { loggedIn } = this.state;
+    const { history, viewer } = this.props;
+
     return (
       <div className="row top-nav nav-bg">
         <div className="col-xs-6 col-lg-5">
@@ -67,8 +51,8 @@ export class index extends Component {
               title="Login button"
               id="dropdown-size-large"
               title={
-                firstName && lastName
-                  ? `${firstName} ${lastName.charAt(0)}.`
+                viewer
+                  ? `${viewer.firstName} ${viewer.lastName.charAt(0)}.`
                   : "Guest"
               }
             >
@@ -108,4 +92,4 @@ export class index extends Component {
   }
 }
 
-export default graphql(navQuery)(index);
+export default index;
