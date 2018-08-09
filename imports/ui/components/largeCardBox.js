@@ -34,7 +34,9 @@ export default (LargeCardBox = (props, recursive) => {
       style={style}
     >
       <div
-        className={`card-box ${blue && "blue"} ${receipt && "receipt"}`}
+        className={`card-box ${blue && "blue"} ${
+          receipt !== undefined ? receipt : ""
+        }`}
         style={{ padding }}
       >
         {title && (
