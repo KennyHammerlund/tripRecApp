@@ -45,8 +45,8 @@ export class index extends Component {
     
     return (
       <div>
-      <PageTitle>
-      My Trips Page 
+      <PageTitle className="page-header">
+      My Trips 
       {viewer && (
         <span className="pull-right text-muted">
           {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
@@ -57,8 +57,7 @@ export class index extends Component {
       <div className="flex flex-column m-b-20">
         <div className="col-lg-8">
           <div className="card-box">
-            <h1 className ="text-dark header-title m-t-0">Your Trips</h1>
-            <p className="text-muted m-b-25 font-13">go out and complete more trips!</p>
+            {/* <h1 className ="text-dark header-title m-t-0 page-header">Your Trips</h1> */}
 
             <div className = "table-responsive">
                   <div className="row">

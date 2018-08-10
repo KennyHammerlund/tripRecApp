@@ -5,8 +5,7 @@ class trip extends Component {
     render() {
         const{id,comments,trip:{description, title}}=this.props.trip;
  
-        return (
-            
+        return (    
             <div className="row">
                 <Link to={`/trip/${id}`}>
                         <div className="col-sm-2">{id}</div>

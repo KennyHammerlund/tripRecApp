@@ -56,13 +56,13 @@ export class index extends Component {
 
     return userTrip ? (
       <div>
-      <PageTitle>
-        View Trip
-      {viewer && (
-        <span className="pull-right text-muted">
-          {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
-        </span>
-      )}
+        <PageTitle className="page-header">
+            View Trip
+          {viewer && (
+            <span className="pull-right text-muted">
+              {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
+            </span>
+          )}
       </PageTitle>
 
       <div className="flex flex-column m-b-20">
@@ -75,16 +75,12 @@ export class index extends Component {
                       <div className="col-sm-2 trip-linkheader">Date</div>
                       <div className="col-sm-4 trip-linkheader">Comments</div>
                 </div>
-            {userTrip.trip.description}
-        </div>
-        <div>
+          {userTrip.trip.description}
           {`${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)} ${Moment(userTrip.date).format("MMM Do")}`}
+          {userTrip.comments}
+            </div>
         </div>
-        <div>
-          <p>{userTrip.comments}</p>
         </div>
-      </div>
-      </div>
       </div>
       </div>
     ) : (
