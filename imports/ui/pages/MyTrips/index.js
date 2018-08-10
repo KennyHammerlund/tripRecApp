@@ -19,7 +19,7 @@ export class index extends Component {
 
     return (
       <div>
-        <PageTitle className="page-header">
+        <PageTitle className="page-header-custom">
           My Trips
           {viewer && (
             <span className="pull-right text-muted">

@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import Moment from 'moment';
 import Token from "../../components/token";
 import PageTitle from "../../components/pageTitle";
+import largeCardBox from "../../components/largeCardBox";
 
 const query =  gql`
 query TripQuery($id: Int!) {
@@ -56,7 +57,7 @@ export class index extends Component {
 
     return userTrip ? (
       <div>
-        <PageTitle className="page-header">
+        <PageTitle className="page-header-custom">
             View Trip
           {viewer && (
             <span className="pull-right text-muted">
@@ -65,28 +66,36 @@ export class index extends Component {
           )}
       </PageTitle>
 
-      <div className="flex flex-column m-b-20">
-        <div className="col-lg-8">
-          <div className="card-box">
-              <div className = "table-responsive">
-                <div className="row">
-                      <div className="col-sm-3 trip-linkheader">Description</div>
-                      <div className="col-sm-3 trip-linkheader">Created By</div>
-                      <div className="col-sm-2 trip-linkheader">Date</div>
-                      <div className="col-sm-4 trip-linkheader">Comments</div>
+      <LargeCardBox>
+      <div className="tripview-spacer">
+                      <div className="tripview-custom">Description:</div>
+                      <div className="tripview-indent">{userTrip.trip.description}</div>
                 </div>
-          {userTrip.trip.description}
-          {`${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)} ${Moment(userTrip.date).format("MMM Do")}`}
-          {userTrip.comments}
-            </div>
+
+                <div className="tripview-spacer">
+                      <div className="tripview-custom">Created By:</div>
+                      <div className="tripview-indent">{`${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)}`}</div>
+                </div>
+
+                <div className="tripview-spacer">
+                      <div className="tripview-custom">Date:</div>
+                      <div className="tripview-indent">{Moment(userTrip.date).format("MMM Do")}</div>
+                </div>
+
+                <div className="tripview-spacer">
+                      <div className="tripview-custom">Comments:</div>
+                      <div className="tripview-indent">{userTrip.comments}</div>
+                </div>
+
+{/*           {`${userTrip.trip.description} ${userTrip.user.firstName} ${userTrip.user.lastName.charAt(0)} ${Moment(userTrip.date).format("MMM Do")} ${userTrip.comments}`}
+ */}
+        </LargeCardBox>
         </div>
-        </div>
-      </div>
-      </div>
     ) : (
       <div>
         <h3>No Data Available</h3>
       </div>
+  
     );
   }
 }
