@@ -14,19 +14,11 @@ class currentTripBox extends Component {
       refreshComp: true
     };
   }
-  // componentDidMount() {
-  //   const { refresh } = this.props;
-  //   const { refreshComp } = this.state;
-  //   console.log(`${refresh} !== ${refreshComp}`);
-  //   if (refresh !== refreshComp) {
-  //     this.props.data.refetch();
-  //     this.setState({ refreshComp: refresh });
-  //   }
-  // }
+
   render() {
     const { size, data } = this.props;
     const { viewer } = data;
-    console.log(data);
+
     return (
       <LargeCardBox receipt="p-0 p-b-10" size={size}>
         {!viewer ? (
@@ -71,6 +63,7 @@ export default graphql(Query, {
   options: () => ({
     variables: {
       token: Token.get()
-    }
+    },
+    pollInterval: 2500
   })
 })(currentTripBox);

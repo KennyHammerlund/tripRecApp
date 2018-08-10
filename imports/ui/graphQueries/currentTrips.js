@@ -3,12 +3,12 @@ import gql from "graphql-tag";
 export default gql`
   query currentTrips($token: String!) {
     viewer(token: $token) {
-      lastName
-      firstName
+      id
       currentTrips {
         id
         comments
         trip {
+          id
           description
           title
           stops {
