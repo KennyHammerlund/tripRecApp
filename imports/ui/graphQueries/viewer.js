@@ -1,8 +1,9 @@
 import gql from "graphql-tag";
 
 export default gql`
-  query dashboard($token: String!) {
+  query SmallViewer($token: String!) {
     viewer(token: $token) {
+      id
       lastName
       firstName
       displayName

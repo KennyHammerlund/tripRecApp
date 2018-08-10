@@ -7,8 +7,8 @@ import Image from "../../components/Image";
 import Navigation from "../Navigation";
 import Token from "../../components/token";
 import Query from "../../graphQueries/dashboard";
+import CurrentTrips from "../../components/currentTripBox";
 
-const token = Token.get();
 export class index extends Component {
   render() {
     const {
@@ -24,8 +24,7 @@ export class index extends Component {
             </span>
           )}
         </PageTitle>
-        <h1>This is the Dashboard</h1>
-        <h2>52.87.223.21</h2>
+        <CurrentTrips size={4} />
       </div>
     );
   }
@@ -34,7 +33,7 @@ export class index extends Component {
 export default graphql(Query, {
   options: () => ({
     variables: {
-      token
+      token: Token.get()
     }
   })
 })(index);

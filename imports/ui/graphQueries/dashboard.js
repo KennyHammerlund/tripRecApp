@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export default gql`
   query dashboard($token: String!) {
     viewer(token: $token) {
+      id
       lastName
       firstName
       displayName
@@ -17,6 +18,7 @@ export default gql`
         link
       }
       trips {
+        id
         date
         comments
         trip {

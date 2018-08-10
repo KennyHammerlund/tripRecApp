@@ -1,24 +1,24 @@
 import gql from "graphql-tag";
 
 export default gql`
-  query UserTrips($token: String!) {
+  query currentTrips($token: String!) {
     viewer(token: $token) {
-      id
       lastName
       firstName
-      trips {
+      currentTrips {
         id
-        date
         comments
         trip {
-          id
           description
+          title
+          stops {
+            id
+            name
+            lat
+            long
+          }
         }
       }
-    }
-    allTrips {
-      id
-      title
     }
   }
 `;

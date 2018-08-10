@@ -22,8 +22,8 @@ import NotListedLocation from "@material-ui/icons/NotListedLocation";
 import Token from "../../components/token";
 import Query from "../../graphQueries/userTrips";
 import ConfirmBox from "../../components/errorBox";
+import CurrentTrips from "../../components/currentTripBox";
 
-const token = Token.get();
 export class index extends React.Component {
   constructor(props) {
     super(props);
@@ -34,7 +34,8 @@ export class index extends React.Component {
       newTrip: 0,
       stop: false,
       success: false,
-      message: ""
+      message: "",
+      refreshTrip: false
     };
   }
   swap = e => {
@@ -52,7 +53,8 @@ export class index extends React.Component {
       : "Trip Insert Error: Are you logged in?";
     this.setState({
       success: true,
-      message
+      message,
+      refreshTrip: !this.state.refreshTrip
     });
   };
 
@@ -63,18 +65,23 @@ export class index extends React.Component {
       description,
       newTrip,
       message,
-      success
+      success,
+      refreshTrip
     } = this.state;
     const { data } = this.props;
     const { viewer } = data;
     const userId = viewer ? viewer.id : null;
-    console.log(this.props);
+
+    // if(this.state.success){
+    //   return <Redirect to='/trip' />
+    // }
     return (
       <div>
         <PageTitle>
           Welcome {viewer ? viewer.firstName : "Guest"}
           <span className="pull-right text-muted">Start A Trip</span>
         </PageTitle>
+        <CurrentTrips size={4} refresh={refreshTrip} />
         <LargeCardBox receipt="p-0" size={4}>
           <AppBar position="static">
             <Tabs
@@ -213,7 +220,7 @@ export class index extends React.Component {
 export default graphql(Query, {
   options: () => ({
     variables: {
-      token
+      token: Token.get()
     }
   })
 })(index);

@@ -5,16 +5,16 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import { AUTH_TOKEN } from './constants';
+import { AUTH_TOKEN } from "./constants";
 
 import login from "./pages/Login";
 import AppLayout from "../ui/AppLayout";
-
+import Token from "./components/token";
 
 class App extends Component {
   render() {
-    const authToken = localStorage.getItem(AUTH_TOKEN);
-    const isLoggedIn = authToken ? authToken != '' ? true : false : false;
+    const authToken = Token.get();
+    const isLoggedIn = authToken ? (authToken != "" ? true : false) : false;
     return (
       <Router>
         <Switch>
@@ -22,7 +22,7 @@ class App extends Component {
             exact
             path="/"
             component={() => {
-              if(!isLoggedIn){
+              if (!isLoggedIn) {
                 return <Redirect to="/login" />;
               }
               return <Redirect to="/dashboard" />;

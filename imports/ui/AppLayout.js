@@ -6,27 +6,19 @@ import Navigation from "./pages/Navigation";
 import Main from "./mainRoutes";
 import Viewer from "./graphQueries/viewer";
 import Token from "./components/token";
-
-const token = Token.get();
 export class AppLayout extends Component {
   render() {
-    const { history, data } = this.props;
-    const { viewer } = data;
+    const { history } = this.props;
+
     return (
       <div className="ui">
-        <Navigation history={history} viewer={viewer} />
+        <Navigation history={history} />
         <div className="content">
-          <Main viewer={viewer} />
+          <Main />
         </div>
       </div>
     );
   }
 }
 
-export default graphql(Viewer, {
-  options: () => ({
-    variables: {
-      token
-    }
-  })
-})(AppLayout);
+export default AppLayout;

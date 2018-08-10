@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import gql from "graphql-tag";
 import { Link } from "react-router-dom";
-import Token from "../../components/token";
-import jwt_decode from "jwt-decode";
 import { LinkContainer } from "react-router-bootstrap";
 import { ButtonToolbar, MenuItem, DropdownButton } from "react-bootstrap";
 
-import Image from "../../components/Image";
-
+import Token from "../../components/token";
+import Query from "../../graphQueries/viewer";
 export class index extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +17,9 @@ export class index extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     const { loggedIn } = this.state;
-    const { history, viewer } = this.props;
-
+    const { history, data } = this.props;
+    const { viewer } = data;
     return (
       <div className="row top-nav nav-bg">
         <div className="col-xs-6 col-lg-5">
@@ -92,4 +87,10 @@ export class index extends Component {
   }
 }
 
-export default index;
+export default graphql(Query, {
+  options: () => ({
+    variables: {
+      token: Token.get()
+    }
+  })
+})(index);
