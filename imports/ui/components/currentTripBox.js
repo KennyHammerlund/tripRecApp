@@ -27,7 +27,7 @@ class currentTripBox extends Component {
           </div>
         ) : (
           <div>
-            <PageTitle centered={true} className={"m-b-10"}>
+            <PageTitle centered={true} className={"m-b-10 active-trips"}>
               Active Trips
             </PageTitle>
             <div className="currentTrip-header row">

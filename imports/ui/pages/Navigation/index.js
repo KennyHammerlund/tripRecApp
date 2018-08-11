@@ -22,12 +22,12 @@ export class index extends Component {
     const { viewer } = data;
     return (
       <div className="row top-nav nav-bg">
-        <div className="col-xs-6 col-lg-5">
+        <div className="col-xs-6 col-lg-8">
           <Link to="/" className="m-l-15 banner-name">
             TripRec
           </Link>
         </div>
-        <div className="col-xs-3 col-lg-3">
+        {/* <div className="col-xs-3 col-lg-3">
           <h5>
             <Link to="/browsetrips">
               <button
@@ -38,11 +38,11 @@ export class index extends Component {
               </button>
             </Link>
           </h5>
-        </div>
-        <div className="col-xs-1 col-lg-3">
+        </div> */}
+        <div className="col-xs-6 col-lg-4 text-right">
           <ButtonToolbar>
             <DropdownButton
-              bsSize="small"
+              bsSize="large"
               title="Login button"
               id="dropdown-size-large"
               title={
@@ -59,6 +59,9 @@ export class index extends Component {
                   <LinkContainer to="/createtrip">
                     <MenuItem eventKey="2">Create Trip</MenuItem>
                   </LinkContainer>
+                  <LinkContainer to="/browsetrips">
+                    <MenuItem eventKey="6">Browse Trips</MenuItem>
+                  </LinkContainer>
                   <MenuItem divider />
                   <MenuItem eventKey="4">
                     <span
@@ -74,6 +77,9 @@ export class index extends Component {
               )}
               {!loggedIn && (
                 <div>
+                  <LinkContainer to="/browsetrips">
+                    <MenuItem eventKey="7">Browse Trips</MenuItem>
+                  </LinkContainer>
                   <LinkContainer to="/login">
                     <MenuItem eventKey="5">Login</MenuItem>
                   </LinkContainer>

@@ -11,6 +11,17 @@ import login from "./pages/Login";
 import AppLayout from "../ui/AppLayout";
 import Token from "./components/token";
 
+// sass.render(
+//   {
+//     file: "/stylesheets/responsive.sass"
+//   },
+//   (err, result) => {
+//     console.log(`Err: ${err}`);
+//     console.log(`result: ${result}`);
+//     console.log(result);
+//   }
+// );
+
 class App extends Component {
   render() {
     const authToken = Token.get();
