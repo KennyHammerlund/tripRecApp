@@ -92,6 +92,7 @@ export default graphql(Query, {
   options: ownProps => ({
     variables: {
       id: ownProps.match.params.userTripId
-    }
+    },
+    pollInterval: 2500
   })
 })(index);

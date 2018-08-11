@@ -1,13 +1,21 @@
 import React, { Component } from "react";
+import { Mutation } from "react-apollo";
+
 import LargeCardBox from "../../components/largeCardBox";
 import Notice from "../../components/errorBox";
 import Moment from "moment";
 import Stop from "../../components/stop.js";
 import Button from "@material-ui/core/Button";
-
+import EndTrip from "../../graphQueries/endTrip";
 class activeTrip extends Component {
+  //TODO ADD CANCEL BOX
+  _confirm = async data => {
+    console.log(data);
+  };
+
   render() {
     const { userTrip } = this.props;
+    const userTripId = userTrip.id;
     return userTrip ? (
       <LargeCardBox size={12} receipt={"m-l-10 m-r-10"}>
         <Notice>
@@ -46,14 +54,22 @@ class activeTrip extends Component {
           </div>
         </div>
         <div className={"text-center"}>
-          <Button
-            variant="contained"
-            size="large"
-            // onClick={mutation}
-            color="primary"
+          <Mutation
+            mutation={EndTrip}
+            variables={{ userTripId }}
+            onCompleted={data => this._confirm(data)}
           >
-            End Trip
-          </Button>
+            {mutation => (
+              <Button
+                variant="contained"
+                size="large"
+                onClick={mutation}
+                color="primary"
+              >
+                End Trip
+              </Button>
+            )}
+          </Mutation>
         </div>
       </LargeCardBox>
     ) : (
