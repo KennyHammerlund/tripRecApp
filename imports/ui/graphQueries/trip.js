@@ -4,6 +4,7 @@ export default gql`
   query TripQuery($id: Int!) {
     userTrip(id: $id) {
       id
+      isActive
       date
       images {
         id
