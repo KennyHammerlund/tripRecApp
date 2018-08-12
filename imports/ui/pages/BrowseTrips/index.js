@@ -50,7 +50,7 @@ export class index extends Component {
           )}
         </PageTitle>
         <div className="flex flex-column m-b-20">
-          <div className="col-lg-8">
+          <div className="flex flex-column m-b-20">
             <div className="card-box">
               {/* <h1 className ="text-dark header-title m-t-0 page-header">Browse Trips</h1> */}
 
