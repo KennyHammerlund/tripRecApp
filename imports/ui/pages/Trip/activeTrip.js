@@ -7,17 +7,38 @@ import Moment from "moment";
 import Stop from "../../components/stop.js";
 import Button from "@material-ui/core/Button";
 import EndTrip from "../../graphQueries/endTrip";
+import SetLocationDialog from "../../components/setLocationDialog";
 class activeTrip extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      locationDialog: false
+    };
+  }
+
   //TODO ADD CANCEL BOX
   _confirm = async data => {
     console.log(data);
   };
 
+  locationDialog = e => {
+    this.setState({ locationDialog: !this.state.locationDialog });
+  };
+
   render() {
     const { userTrip } = this.props;
     const userTripId = userTrip.id;
+    const { locationDialog } = this.state;
+
     return userTrip ? (
-      <LargeCardBox size={12} receipt={"m-l-10 m-r-10"}>
+      <LargeCardBox size={8} receipt={"m-l-10 m-r-10"}>
+        {locationDialog && (
+          <SetLocationDialog
+            userTrip={userTrip}
+            open={locationDialog}
+            toggle={e => this.locationDialog(e)}
+          />
+        )}
         <Notice>
           <h3 className="text-danger m-t-5">Active Trip</h3>
         </Notice>
@@ -50,10 +71,22 @@ class activeTrip extends Component {
           <div>
             {userTrip.trip &&
               userTrip.trip.stops.length > 0 &&
-              userTrip.trip.stops.map(stop => <Stop stop={stop} />)}
+              userTrip.trip.stops.map(stop => (
+                <Stop stop={stop} key={stop.id} />
+              ))}
           </div>
         </div>
         <div className={"text-center"}>
+          <Button
+            variant="contained"
+            size="large"
+            onClick={this.locationDialog}
+            color="primary"
+            className="m-r-15"
+          >
+            Add Stop
+          </Button>
+
           <Mutation
             mutation={EndTrip}
             variables={{ userTripId }}

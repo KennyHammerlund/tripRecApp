@@ -1,0 +1,27 @@
+@import "responsive";
+
+.map-container {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  @include phone {
+    font-size: 30px;
+  }
+  @include tablet {
+    width: 300px;
+    height: 300px;
+  }
+  @include desktop {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+.close-glyph {
+  float: right;
+  color: #aaa;
+  cursor: pointer;
+}
+.close-glyph:hover {
+  color: #000;
+}
