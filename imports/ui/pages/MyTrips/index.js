@@ -23,7 +23,7 @@ export class index extends Component {
           My Trips
           {viewer && (
             <span className="pull-right text-muted">
-              {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
+              {` Welcome ${viewer.firstName} ${viewer.lastName.charAt(0)}!`}
             </span>
           )}
         </PageTitle>
@@ -35,10 +35,10 @@ export class index extends Component {
 
               <div className="">
                 <div className="row">
-                  <div className="col-sm-2 trip-linkheader">ID</div>
-                  <div className="col-sm-3 trip-linkheader">Title</div>
-                  <div className="col-sm-3 trip-linkheader">Comments</div>
-                  <div className="col-sm-4 trip-linkheader">Description</div>
+                  <div className="col-xs-2 trip-linkheader">ID</div>
+                  <div className="col-xs-3 trip-linkheader">Title</div>
+                  <div className="col-xs-3 trip-linkheader">Comments</div>
+                  <div className="col-xs-4 trip-linkheader">Description</div>
                 </div>
 
                 {viewer && viewer.trips

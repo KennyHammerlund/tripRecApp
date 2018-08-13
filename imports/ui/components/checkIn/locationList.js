@@ -11,7 +11,7 @@ class locationList extends Component {
     };
   }
 
-  changeLocation = () => {
+  changeLocation = event => {
     const { setLocationId } = this.props;
     console.log(`Changed: ${this.state.previousLocation}`);
     setLocationId(event.target.value);

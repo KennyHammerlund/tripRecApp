@@ -14,7 +14,13 @@ const tripsQuery = gql`
       description
       stops {
         id
-        name
+        order
+        location {
+          name
+          lat
+          long
+        }
+        __typename
       }
       userTrips {
         id
@@ -23,8 +29,11 @@ const tripsQuery = gql`
           id
           title
           description
+          __typename
         }
+        __typename
       }
+      __typename
     }
   }
 `;
@@ -45,7 +54,7 @@ export class index extends Component {
           Browse Trips
           {viewer && (
             <span className="pull-right text-muted">
-              {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
+              {` Welcome ${viewer.firstName} ${viewer.lastName.charAt(0)}!`}
             </span>
           )}
         </PageTitle>

@@ -31,17 +31,9 @@ $phone-width: 320px;
     @content;
   }
 }
-body {
-  @include phone {
-    font-size: 26px;
-  }
-  @include tablet {
-    font-size: 26px;
-  }
-}
 h3 {
   @include phone {
-    font-size: 32px;
+    font-size: 21px;
   }
   @include tablet {
     font-size: 26px;
@@ -50,20 +42,12 @@ h3 {
 .nav-bg {
   background-color: #6d4c41;
   padding-top: 15px;
-  @include phone {
-    height: 120px;
-  }
-  @include tablet {
-    height: 120px;
-  }
-  @include desktop {
-    height: 80px;
-  }
+  height: 80px;
 }
 /*DropDown Button*/
 .btn-lg {
   @include phone {
-    font-size: 30px !important;
+    font-size: 26px !important;
     padding: 10px 30px;
   }
   @include tablet {
@@ -82,22 +66,23 @@ h3 {
     left: -85px !important;
   }
   @include phone {
-    font-size: 44px !important;
-    min-width: 300px !important;
+    font-size: 26px !important;
+    min-width: 200px !important;
+    left: -40px !important;
   }
   @include tablet {
-    font-size: 70px !important;
-    min-width: 500px !important;
-    left: -320px !important;
+    font-size: 36px !important;
+    min-width: 300px !important;
+    left: -120px !important;
   }
 }
 .banner-name {
   color: #fff;
   @include phone {
-    font-size: 85px;
+    font-size: 30px;
   }
   @include tablet {
-    font-size: 65px;
+    font-size: 30px;
   }
   @include desktop {
     font-size: 38px;
@@ -105,10 +90,10 @@ h3 {
 }
 .h4 {
   @include phone {
-    font-size: 40px;
+    font-size: 21px;
   }
   @include tablet {
-    font-size: 32px;
+    font-size: 23px;
   }
   @include desktop {
     font-size: 24px;
@@ -116,12 +101,12 @@ h3 {
 }
 .active-trips h3 {
   @include phone {
-    font-size: 55px;
+    font-size: 28px;
     font-weight: 700;
   }
   @include tablet {
     font-weight: 700;
-    font-size: 55px;
+    font-size: 28px;
   }
   @include desktop {
     font-size: 24px;
@@ -135,10 +120,10 @@ h3 {
   margin-left: 0 !important;
   margin-right: 0 !important;
   @include phone {
-    font-size: 30px;
+    font-size: 18px;
   }
   @include tablet {
-    font-size: 30px;
+    font-size: 19px;
   }
   @include desktop {
     font-size: 18px;

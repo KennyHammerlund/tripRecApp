@@ -78,8 +78,9 @@ export class index extends React.Component {
     return (
       <div>
         <PageTitle>
-          Welcome {viewer ? viewer.firstName : "Guest"}
           <span className="pull-right text-muted">Start A Trip</span>
+          Welcome{" "}
+          {viewer ? `${viewer.firstName} ${viewer.lastName.carAt(0)}` : "Guest"}
         </PageTitle>
         <CurrentTrips size={4} refresh={refreshTrip} />
         <LargeCardBox receipt="p-0" size={4}>

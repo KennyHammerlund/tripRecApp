@@ -20,7 +20,7 @@ export class index extends Component {
           Dashboard
           {viewer && (
             <span className="pull-right text-muted">
-              {` Welcome ${viewer.firstName} ${viewer.lastName}!`}
+              {` Welcome ${viewer.firstName} ${viewer.lastName.charAt(0)}!`}
             </span>
           )}
         </PageTitle>
