@@ -4,47 +4,15 @@ import gql from "graphql-tag";
 import Maintrip from "../../components/maintrip";
 import PageTitle from "../../components/pageTitle";
 import Token from "../../components/token";
+import Query from "../../graphQueries/browseTrips";
 
-const tripsQuery = gql`
-  {
-    allTrips {
-      id
-      title
-      date
-      description
-      stops {
-        id
-        order
-        location {
-          name
-          lat
-          long
-        }
-        __typename
-      }
-      userTrips {
-        id
-        comments
-        trip {
-          id
-          title
-          description
-          __typename
-        }
-        __typename
-      }
-      __typename
-    }
-  }
-`;
 const token = Token.get();
 export class index extends Component {
   render() {
     console.log("------BROWSETRIPPROPS------");
     console.log(this.props);
-
-    const { viewer } = this.props;
     const {
+      viewer,
       data: { allTrips }
     } = this.props;
 
@@ -54,22 +22,32 @@ export class index extends Component {
           Browse Trips
           {viewer && (
             <span className="pull-right text-muted">
-              {` Welcome ${viewer.firstName} ${viewer.lastName.charAt(0)}!`}
+              {` Welcome ${viewer.firstName} ${viewer.lastName.charAt(0)}.`}
             </span>
           )}
         </PageTitle>
-        <div className="flex flex-column m-b-20">
-          <div className="flex flex-column m-b-20">
-            <div className="card-box">
-              {/* <h1 className ="text-dark header-title m-t-0 page-header">Browse Trips</h1> */}
-
-              {allTrips ? allTrips.map(trip => <Maintrip trip={trip} />) : null}
+        {allTrips ? (
+          <div className="flex flex-column m-15">
+            <div className="card-box m-l-15 m-r-15">
+              {allTrips
+                ? allTrips.map(trip => (
+                    <Maintrip trip={trip} key={`T${trip.id}`} />
+                  ))
+                : null}
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="m-l-20 cardBox">Loading . . .</div>
+        )}
       </div>
     );
   }
 }
 
-export default graphql(tripsQuery)(index);
+export default graphql(Query, {
+  options: () => ({
+    variables: {
+      token: Token.get()
+    }
+  })
+})(index);
