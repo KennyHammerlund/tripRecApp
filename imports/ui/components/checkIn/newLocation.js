@@ -28,9 +28,13 @@ class oldLocation extends Component {
 
   _confirm = data => {
     console.log(`location Stored ${data.AddLocation}`);
+    if (!data.AddLocation) {
+      console.log("Error Storing Primary Location");
+    }
+
     this.setState({
       locationId: data.AddLocation,
-      checkin: true,
+      checkin: true && data.AddLocation,
       success: false
     });
   };
@@ -46,8 +50,8 @@ class oldLocation extends Component {
   render() {
     const { swap, coords, userTrip } = this.props;
     const payload = {
-      lat: coords.latitude,
-      long: coords.longitude,
+      lat: coords ? coords.latitude : 0,
+      long: coords ? coords.longitude : 0,
       name: this.state.name,
       description: this.state.description
     };
@@ -55,7 +59,17 @@ class oldLocation extends Component {
     const checkinPayload = {
       userTripId: userTrip.id,
       comments: this.state.comments,
-      locationId: this.state.locationId
+      locationId: this.state.locationId,
+      tripId: userTrip.trip ? userTrip.trip.id : null,
+      newTrip: true
+    };
+
+    const mapOptions = {
+      center: {
+        lat: 59.95,
+        lng: 30.33
+      },
+      zoom: 11
     };
     return (
       <div>
@@ -67,20 +81,21 @@ class oldLocation extends Component {
             You have saved this stop
           </div>
         )}
-
-        {/* <div className="map-container">
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: MAP_TOKEN }}
-            defaultCenter={mapOptions.center}
-            defaultZoom={mapOptions.zoom}
-          >
-            <AnyReactComponent
-              lat={coords.latitude}
-              lng={coords.longitude}
-              text={"Check In Here"}
-            />
-          </GoogleMapReact>
-        </div> */}
+        {coords && (
+          <div className="map-container">
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: MAP_TOKEN }}
+              defaultCenter={mapOptions.center}
+              defaultZoom={mapOptions.zoom}
+            >
+              <AnyReactComponent
+                lat={coords.latitude}
+                lng={coords.longitude}
+                text={"Check In Here"}
+              />
+            </GoogleMapReact>
+          </div>
+        )}
 
         <TextField
           id="locationName"

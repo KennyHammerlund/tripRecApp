@@ -22,31 +22,29 @@ class locationList extends Component {
   render() {
     console.log(this.props);
     const { locations } = this.props;
-    const selectClasses = {
-      marginTop: "10px",
-      marginBottom: "20px",
-      minWidth: "100px"
-    };
-
     return locations ? (
       <div>
         <DialogContentText>
           We have found locations near you. Please select from the dropdown or
           set a new location.
         </DialogContentText>
-        <Select
-          value={this.state.previousLocation}
-          onChange={this.changeLocation}
-          // classes={selectClasses}
-          displayEmpty={true}
-        >
-          <MenuItem value="new">New Location</MenuItem>
-          {locations.map(location => (
-            <MenuItem value={location.id} key={`MI-${location.id}`}>
-              {location.name}
-            </MenuItem>
-          ))}
-        </Select>
+        <div className="m-t-10">
+          <Select
+            value={this.state.previousLocation}
+            onChange={this.changeLocation}
+            // classes={selectClasses}
+            displayEmpty={true}
+            autoWidth={true}
+            value={"new"}
+          >
+            <MenuItem value="new">New Location</MenuItem>
+            {locations.map(location => (
+              <MenuItem value={location.id} key={`MI-${location.id}`}>
+                {location.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
       </div>
     ) : null;
   }

@@ -3,7 +3,10 @@ import React, { Component } from "react";
 class stop extends Component {
   render() {
     const {
-      stop: { name, lat, long, comments }
+      stop: {
+        location: { name, lat, long },
+        order
+      }
     } = this.props;
     return <div>{name}</div>;
   }

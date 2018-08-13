@@ -13,9 +13,11 @@ export default gql`
           title
           stops {
             id
-            name
-            lat
-            long
+            location {
+              name
+              lat
+              long
+            }
           }
         }
       }

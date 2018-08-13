@@ -7,6 +7,8 @@ class checkIn extends Component {
     this.props.end();
   }
   render() {
+    console.log("------MutationPROPS------");
+    console.log(this.props);
     this.props.mutate();
     return <div className="success-notice">You have saved this stop</div>;
   }
@@ -17,7 +19,9 @@ export default graphql(CheckInMutation, {
     variables: {
       userTripId: props.userTripId,
       comments: props.comments,
-      locationId: props.locationId
+      locationId: props.locationId,
+      tripId: props.tripId,
+      newTrip: props.newTrip
     }
   })
 })(checkIn);

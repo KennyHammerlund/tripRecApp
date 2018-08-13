@@ -67,8 +67,8 @@ class activeTrip extends Component {
           <div className="tripview-indent">{userTrip.comments}</div>
         </div>
         <div>
-          Trip Stops:
-          <div>
+          <div className="tripview-custom">Trip Stops:</div>
+          <div className={"m-b-10"}>
             {userTrip.trip &&
               userTrip.trip.stops.length > 0 &&
               userTrip.trip.stops.map(stop => (

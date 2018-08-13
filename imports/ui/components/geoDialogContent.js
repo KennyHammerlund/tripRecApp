@@ -29,9 +29,9 @@ class geoDialogContent extends Component {
     return (
       <DialogContent>
         {locationNearby && isData ? (
-          <NewLocation swap={this.swap} {...this.props} />
-        ) : (
           <OldLocation data={data} swap={this.swap} {...this.props} />
+        ) : (
+          <NewLocation swap={this.swap} {...this.props} />
         )}
       </DialogContent>
     );

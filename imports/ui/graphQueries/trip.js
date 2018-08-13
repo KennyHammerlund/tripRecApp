@@ -16,9 +16,12 @@ export default gql`
         description
         stops {
           id
-          name
-          lat
-          long
+          order
+          location {
+            name
+            lat
+            long
+          }
         }
       }
       user {
