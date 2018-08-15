@@ -12,14 +12,21 @@ export class index extends Component {
     const authToken = Token.get();
     this.state = {
       displayName: "",
-      loggedIn: authToken && authToken != ""
+      loggedIn: authToken && authToken != "",
+      navOpen: false
     };
   }
 
+  navSwitch = () => {
+    this.setState({
+      navOpen: !this.state.navOpen
+    });
+  };
   render() {
-    const { loggedIn } = this.state;
+    const { loggedIn, navOpen } = this.state;
     const { history, data } = this.props;
     const { viewer } = data;
+    console.log(this.state);
     return (
       <div className="row top-nav nav-bg">
         <div className="col-xs-6 col-lg-8">
@@ -45,6 +52,10 @@ export class index extends Component {
               bsSize="large"
               title="Login button"
               id="dropdown-size-large"
+              open={navOpen}
+              onToggle={this.navSwitch}
+              onSelect={this.navSwitch}
+              pullRight={true}
               title={
                 viewer
                   ? `${viewer.firstName} ${viewer.lastName.charAt(0)}.`

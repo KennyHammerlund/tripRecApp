@@ -4,6 +4,7 @@ import PageTitle from "../../components/pageTitle";
 import Query from "../../graphQueries/trip";
 import ActiveTrip from "./activeTrip";
 import InActiveTrip from "./inActiveTrip";
+import Token from "../../components/token";
 export class index extends Component {
   constructor(props) {
     super(props);
@@ -12,14 +13,8 @@ export class index extends Component {
   render() {
     const {
       match,
-      data: { userTrip }
+      data: { userTrip, viewer }
     } = this.props;
-    const {
-      params: { userTripId }
-    } = match;
-
-    const { viewer, data } = this.props;
-    const { user } = data;
 
     return userTrip ? (
       <div>
@@ -33,7 +28,7 @@ export class index extends Component {
         </PageTitle>
         <div className="row row-center">
           {userTrip.isActive ? (
-            <ActiveTrip userTrip={userTrip} />
+            <ActiveTrip userTrip={userTrip} viewer={viewer} />
           ) : (
             <InActiveTrip userTrip={userTrip} />
           )}
@@ -50,7 +45,8 @@ export class index extends Component {
 export default graphql(Query, {
   options: ownProps => ({
     variables: {
-      id: ownProps.match.params.userTripId
+      id: ownProps.match.params.userTripId,
+      viewer: Token.get()
     },
     pollInterval: 2500
   })

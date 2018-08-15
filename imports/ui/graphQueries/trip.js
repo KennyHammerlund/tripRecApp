@@ -1,7 +1,12 @@
 import gql from "graphql-tag";
 
 export default gql`
-  query TripQuery($id: Int!) {
+  query TripQuery($id: Int!, $viewer: String!) {
+    viewer(token: $viewer) {
+      id
+      firstName
+      lastName
+    }
     userTrip(id: $id) {
       id
       isActive

@@ -63,17 +63,17 @@ h3 {
   @include desktop {
     font-size: 26px !important;
     min-width: 200px !important;
-    left: -85px !important;
+    // left: -85px !important;
   }
   @include phone {
     font-size: 26px !important;
     min-width: 200px !important;
-    left: -40px !important;
+    // left: -40px !important;
   }
   @include tablet {
     font-size: 36px !important;
     min-width: 300px !important;
-    left: -120px !important;
+    // left: -120px !important;
   }
 }
 .banner-name {

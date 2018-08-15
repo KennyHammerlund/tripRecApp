@@ -1,0 +1,30 @@
+@import "responsive";
+
+.browse-trip-header {
+  font-size: 28px;
+  @include phone {
+    font-size: 18px;
+  }
+  font-weight: 700;
+  padding-left: 10px !important;
+  padding-top: 10px !important;
+  padding-right: 10px !important;
+}
+.bt-border-dark {
+  border-bottom: 2px solid #000;
+}
+.bt-border-light {
+  border-bottom: 2px solid #ccc;
+}
+
+.trip-details {
+  background-color: #6d4c4170;
+}
+.trip-details a {
+  color: #000;
+  font-weight: 500;
+  font-size: 14px;
+}
+.trip-linkheader {
+  font-weight: 700 !important;
+}

@@ -7,20 +7,20 @@ class locationList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      previousLocation: ""
+      previousLocation: "",
+      value: "new"
     };
   }
 
   changeLocation = event => {
     const { setLocationId } = this.props;
-    console.log(`Changed: ${this.state.previousLocation}`);
     setLocationId(event.target.value);
     this.setState({
-      previousLocation: event.target.value
+      value: event.target.value
     });
   };
   render() {
-    console.log(this.props);
+    const { value } = this.state;
     const { locations } = this.props;
     return locations ? (
       <div>
@@ -35,7 +35,7 @@ class locationList extends Component {
             // classes={selectClasses}
             displayEmpty={true}
             autoWidth={true}
-            value={"new"}
+            value={value}
           >
             <MenuItem value="new">New Location</MenuItem>
             {locations.map(location => (

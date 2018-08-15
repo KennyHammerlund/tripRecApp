@@ -5,12 +5,10 @@ import Maintrip from "../../components/maintrip";
 import PageTitle from "../../components/pageTitle";
 import Token from "../../components/token";
 import Query from "../../graphQueries/browseTrips";
-
+import LargeCardBox from "../../components/largeCardBox";
 const token = Token.get();
 export class index extends Component {
   render() {
-    console.log("------BROWSETRIPPROPS------");
-    console.log(this.props);
     const {
       viewer,
       data: { allTrips }
@@ -26,19 +24,13 @@ export class index extends Component {
             </span>
           )}
         </PageTitle>
-        {allTrips ? (
-          <div className="flex flex-column m-15">
-            <div className="card-box m-l-15 m-r-15">
-              {allTrips
-                ? allTrips.map(trip => (
-                    <Maintrip trip={trip} key={`T${trip.id}`} />
-                  ))
-                : null}
-            </div>
-          </div>
-        ) : (
-          <div className="m-l-20 cardBox">Loading . . .</div>
-        )}
+        <LargeCardBox padding={0} margin={15} size={12}>
+          {allTrips ? (
+            allTrips.map(trip => <Maintrip trip={trip} key={`T${trip.id}`} />)
+          ) : (
+            <div className="p-20">Loading . . .</div>
+          )}
+        </LargeCardBox>
       </div>
     );
   }

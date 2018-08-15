@@ -11,6 +11,7 @@ export default (LargeCardBox = (props, recursive) => {
     style,
     padding,
     receipt,
+    margin,
     blue,
     grid
   } = props;
@@ -37,7 +38,7 @@ export default (LargeCardBox = (props, recursive) => {
         className={`card-box ${blue && "blue"} ${
           receipt !== undefined ? receipt : ""
         }`}
-        style={{ padding }}
+        style={{ padding, margin }}
       >
         {title && (
           <h2 className={`text-dark header-title m-t-0 ${!secondaryText}`}>

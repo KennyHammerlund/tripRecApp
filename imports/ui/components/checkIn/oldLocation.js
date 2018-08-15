@@ -6,36 +6,46 @@ import TextField from "@material-ui/core/TextField";
 
 import CheckIn from "../../graphQueries/checkIn";
 import LocationList from "./locationList";
-
+import Confirmation from "./checkIn";
 class oldLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
       locationId: null,
       comments: "",
-      userTripId: null,
-      tripId: null
+      tripId: null,
+      confirmation: false
     };
   }
 
   _confirm = data => {
     console.log(`Mutation Complete ${data}`);
+    this.setState({
+      confirmation: data
+    });
   };
   setLocationId = id => {
     this.setState({ locationId: id });
   };
   render() {
+    const { confirmation } = this.state;
     const {
       data: { findNearbyLocations },
-      swap
+      swap,
+      userTrip
     } = this.props;
+    let tripId = userTrip && userTrip.trip ? userTrip.trip.id : null;
+
     const payload = {
-      ...this.state
+      ...this.state,
+      userTripId: userTrip && userTrip.id ? userTrip.id : null,
+      tripId: tripId,
+      newTrip: false
     };
-    console.log(payload);
 
     return (
       <div>
+        {confirmation && <div>You have saved the trip</div>}
         <LocationList
           locations={findNearbyLocations}
           setLocationId={this.setLocationId}

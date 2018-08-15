@@ -12,7 +12,8 @@ class activeTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      locationDialog: false
+      locationDialog: false,
+      isUsersTrip: false
     };
   }
 
@@ -26,10 +27,14 @@ class activeTrip extends Component {
   };
 
   render() {
-    const { userTrip } = this.props;
+    const { userTrip, viewer = {} } = this.props;
     const userTripId = userTrip.id;
     const { locationDialog } = this.state;
-
+    const isMyTrip =
+      viewer.id != null &&
+      userTrip.user != null &&
+      viewer.id === userTrip.user.id;
+    console.log(this.props);
     return userTrip ? (
       <LargeCardBox size={8} receipt={"m-l-10 m-r-10"}>
         {locationDialog && (
@@ -76,34 +81,36 @@ class activeTrip extends Component {
               ))}
           </div>
         </div>
-        <div className={"text-center"}>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={this.locationDialog}
-            color="primary"
-            className="m-r-15"
-          >
-            Add Stop
-          </Button>
+        {isMyTrip && (
+          <div className={"text-center"}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={this.locationDialog}
+              color="primary"
+              className="m-r-15"
+            >
+              Add Stop
+            </Button>
 
-          <Mutation
-            mutation={EndTrip}
-            variables={{ userTripId }}
-            onCompleted={data => this._confirm(data)}
-          >
-            {mutation => (
-              <Button
-                variant="contained"
-                size="large"
-                onClick={mutation}
-                color="primary"
-              >
-                End Trip
-              </Button>
-            )}
-          </Mutation>
-        </div>
+            <Mutation
+              mutation={EndTrip}
+              variables={{ userTripId }}
+              onCompleted={data => this._confirm(data)}
+            >
+              {mutation => (
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={mutation}
+                  color="primary"
+                >
+                  End Trip
+                </Button>
+              )}
+            </Mutation>
+          </div>
+        )}
       </LargeCardBox>
     ) : (
       <LargeCardBox size={12} receipt={"m-l-10 m-r-10"}>
