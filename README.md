@@ -2,13 +2,15 @@
 
 A trip recording web application
 
+## TODO:
+- add stop page
+- add image upload to stops from current trip page
+- add persostant current trip banner
+- refactor navigation bar
+
 ## Anything put into an index.js file will automatically be refrenced if you import the folder.
 
 #Example:
-
-# import someFile from './somefolder';
-
-# imports index.js from the /somefolder
 
 Folder Structure:
 client - meteor looks here to initialize client
@@ -27,6 +29,9 @@ pagename - for each page create a folder inside has index.js and any other files
 Houses the redirects to files based on the route. If browser goes to /page then go to folder /page/index.js
 
 ## CSS
+
+sass .scss files are automatically compiled with the meteor build program. 
+-responsive.scss can be imported to obtan breakpoints for mobile
 
 Bootstrap 4 is included in the package this gives access to all the bootsrap css classes
 https://getbootstrap.com/docs/4.1/getting-started/introduction/
