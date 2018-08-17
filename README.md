@@ -3,6 +3,7 @@
 A trip recording web application
 
 ## TODO:
+- implement devLocalAPI to connect to a local instance of thw gql server to make simultanious updates. 
 - add stop page
 - add image upload to stops from current trip page
 - add persostant current trip banner
