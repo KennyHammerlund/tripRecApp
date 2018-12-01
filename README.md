@@ -1,6 +1,8 @@
-# app
+# TripRec UI app
 
 A trip recording web application
+
+#This App is no longer maintained by me. The repo remains for historical/playground purposes. 
 
 ## TODO:
 - implement devLocalAPI to connect to a local instance of thw gql server to make simultanious updates. 
