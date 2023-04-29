@@ -25,7 +25,7 @@
     "graphql-tag": "^2.9.2",
     "graphql-tools": "^2.15.0",
     "heroku-ssl-redirect": "0.0.4",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "js-cookie": "^2.2.0",
     "jwt-decode": "^2.2.0",
     "less": "^3.6.0",
