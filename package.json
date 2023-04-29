@@ -33,7 +33,7 @@
     "material-ui": "^0.20.1",
     "meteor-node-stubs": "^0.3.2",
     "moment": "^2.22.2",
-    "mup": "^1.4.5",
+    "mup": "^1.5.10",
     "node-sass": "^4.9.3",
     "popper.js": "^1.14.3",
     "react": "^16.2.0",
